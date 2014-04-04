@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            xmlns:direct="urn:gov:hhs:fha:nhinc:common:direct" 
+            xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon" 
+            targetNamespace="urn:gov:hhs:fha:nhinc:common:direct" 
+            elementFormDefault="qualified">
+	<xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="../common/NhincCommon.xsd"/>
+	<xsd:complexType name="MIMEMessageType">
+		<xsd:sequence>
+			<xsd:element ref="contentIDType"/>
+			<xsd:element ref="contentType"/>
+                        <xsd:element ref="modifiedType"/>
+                        <xsd:element ref="savedType"/>
+                        <xsd:element ref="flags"/>
+                        <xsd:element ref="contentStreamType"/>
+		</xsd:sequence>
+        </xsd:complexType>
+        <xsd:simpleType name="contentIDType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+            <xsd:simpleType name="contentType">
+            <xsd:restriction base="xsd:short">
+            <xsd:minInclusive value="-128"/>
+            <xsd:maxInclusive value="127"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+        <xsd:simpleType name="modifiedType">
+		<xsd:restriction base="xsd:boolean"/>
+	</xsd:simpleType>
+        <xsd:simpleType name="savedType">
+		<xsd:restriction base="xsd:boolean"/>
+	</xsd:simpleType>        
+            <xsd:simpleType name="contentStreamType">
+            <xsd:restriction base="xsd:short">
+            <xsd:minInclusive value="-128"/>
+            <xsd:maxInclusive value="127"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+        <xsd:element name="flags">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:minInclusive value="0"/>
+                <xsd:maxInclusive value="6"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:element> 
+</xsd:schema>

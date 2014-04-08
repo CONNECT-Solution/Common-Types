@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            xmlns:direct="urn:gov:hhs:fha:nhinc:direct" 
+            targetNamespace="urn:gov:hhs:fha:nhinc:direct" 
+            xmlns:tns="urn:gov:hhs:fha:nhinc:direct"
+            elementFormDefault="qualified">	
+    <xsd:complexType name="MIMEMessageType">
+        <xsd:sequence>
+            <xsd:element name="contentID" type="xsd:string"/>
+            <xsd:element name="contentType" type="xsd:short"/>
+            <xsd:element name="contentStreamType" type="xsd:short"/>		
+            <xsd:element name="modifiedType" type="xsd:boolean"/>	
+            <xsd:element name="savedType" type="xsd:boolean"/>	
+            <xsd:element name="flags" type="xsd:string"/>	
+        </xsd:sequence>
+    </xsd:complexType>
+        
+    <xsd:complexType name="DirectReceiverRequestType">
+        <xsd:sequence>
+            <xsd:element name="MIMEMessage" type="tns:MIMEMessageType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DirectReceiverRequest" type="tns:DirectReceiverRequestType"/>
+        
+</xsd:schema>

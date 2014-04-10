@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-            xmlns:direct="urn:gov:hhs:fha:nhinc:direct" 
-            targetNamespace="urn:gov:hhs:fha:nhinc:direct" 
-            xmlns:tns="urn:gov:hhs:fha:nhinc:direct"
-            elementFormDefault="qualified">	
-    <xsd:complexType name="MIMEMessageType">
-        <xsd:sequence>
-            <xsd:element name="contentID" type="xsd:string"/>
-            <xsd:element name="contentType" type="xsd:short"/>
-            <xsd:element name="contentStreamType" type="xsd:short"/>		
-            <xsd:element name="modifiedType" type="xsd:boolean"/>	
-            <xsd:element name="savedType" type="xsd:boolean"/>	
-            <xsd:element name="flags" type="xsd:string"/>	
-        </xsd:sequence>
-    </xsd:complexType>
-        
-    <xsd:complexType name="DirectReceiverRequestType">
-        <xsd:sequence>
-            <xsd:element name="MIMEMessage" type="tns:MIMEMessageType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="DirectReceiverRequest" type="tns:DirectReceiverRequestType"/>
-        
-</xsd:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="urn:gov:hhs:fha:nhinc:direct"
+           elementFormDefault="unqualified"
+           targetNamespace="urn:gov:hhs:fha:nhinc:direct"
+           version="1.0">
+   <xs:element name="receiveInbound" type="tns:receiveInbound"/>
+   <xs:element name="receiveInboundResponse" type="tns:receiveInboundResponse"/>
+   <xs:complexType name="receiveInbound">
+      <xs:sequence>
+         <xs:element minOccurs="0" name="arg0" type="tns:mimeMessage1"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="mimeMessage1">
+      <xs:complexContent>
+         <xs:extension base="tns:message">
+            <xs:sequence>
+               <xs:element minOccurs="0" name="contentID" type="xs:string"/>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="contentLanguage" nillable="true"
+                           type="xs:string"/>
+               <xs:element minOccurs="0" name="contentMD5" type="xs:string"/>
+               <xs:element minOccurs="0" name="dataHandler" type="xs:base64Binary"/>
+               <xs:element minOccurs="0" name="description" type="xs:string"/>
+               <xs:element minOccurs="0" name="disposition" type="xs:string"/>
+               <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+               <xs:element minOccurs="0" name="sender" type="tns:address"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="message">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="replyTo" nillable="true"
+                     type="tns:address"/>
+         <xs:element minOccurs="0" name="sentDate" type="xs:dateTime"/>
+         <xs:element minOccurs="0" name="subject" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="address">
+       <xs:sequence>
+           <xs:element minOccurs="0" name="atype" type="xs:string"/>
+       </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="receiveInboundResponse">
+      <xs:sequence/>
+   </xs:complexType>
+</xs:schema>
+

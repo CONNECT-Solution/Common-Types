@@ -80,6 +80,7 @@
                         <include>uddi/uddi_v3policy_instanceParms.xsd</include>
                         <include>uddi/uddi_v3subscriptionListener.xsd</include>
                         <include>uddi/uddi_v3subscription.xsd</include>
+						<include>www.caqh.org/**/*.xsd</include>
                         <include>www.w3.org/**/*.xsd</include>
                         <include>xmlsoap.org/**/*.xsd</include>
                         <include>Endpoint/**/*.xsd</include>

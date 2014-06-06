@@ -925,7 +925,7 @@
     <xsd:element name="RespondingGateway_SendAlertMessageSecured" type="tns:RespondingGateway_SendAlertMessageSecuredType"/>
 	
     <!-- ====================================================================
-    X12 Document Submission Schemas.
+    X12 Document Submission RealTime / Sync Service Schemas.
     ==================================================================== -->
     <xsd:complexType name="AdapterCOREEnvelopeRealTimeRequestType">
         <xsd:sequence>
@@ -956,6 +956,39 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterCOREEnvelopeRealTimeSecuredRequest" type="tns:AdapterCOREEnvelopeRealTimeSecuredRequestType"/>
+    
+    <!-- ====================================================================
+    X12 Document Submission Batch / Async / Deferred Service Schemas.
+    ==================================================================== -->
+    <xsd:complexType name="AdapterBatchSubmissionRequestType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmission"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterBatchSubmissionRequest" type="tns:AdapterBatchSubmissionRequestType"/>
+	
+    <xsd:complexType name="AdapterBatchSubmissionResponseType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterBatchSubmissionResponse" type="tns:AdapterBatchSubmissionResponseType"/>
+	
+    <xsd:complexType name="AdapterBatchSubmissionResponseSecuredType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>			
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterBatchSubmissionResponseSecured" type="tns:AdapterBatchSubmissionResponseSecuredType"/>	
+	
+    <xsd:complexType name="AdapterBatchSubmissionSecuredRequestType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmission"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterBatchSubmissionSecuredRequest" type="tns:AdapterBatchSubmissionSecuredRequestType"/>        
     <!-- ====================================================================
     Continue adding from here for new Schemas
     ==================================================================== -->

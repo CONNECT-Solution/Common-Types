@@ -268,7 +268,7 @@
 
 
     <!-- ====================================================================
-    X12 Document Submission Schemas.
+    X12 Document Submission Realtime/Sync Schemas.
     ==================================================================== -->
     <xsd:complexType name="RespondingGateway_CrossGatewayCOREEnvelopeRealTimeRequestType">
         <xsd:sequence>
@@ -304,5 +304,42 @@
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayCOREEnvelopeRealTimeSecuredRequest" type="tns:RespondingGateway_CrossGatewayCOREEnvelopeRealTimeSecuredRequestType"/>
 
+    <!-- ====================================================================
+    X12 Document Submission Batch/Deferred/Async Schemas.
+    ==================================================================== -->
+    <xsd:complexType name="RespondingGateway_CrossGatewayBatchSubmissionRequestType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmission"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_CrossGatewayBatchSubmissionRequest" type="tns:RespondingGateway_CrossGatewayBatchSubmissionRequestType"/>
+    
+    <xsd:complexType name="RespondingGateway_CrossGatewayBatchSubmissionResponseType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_CrossGatewayBatchSubmissionResponse" type="tns:RespondingGateway_CrossGatewayBatchSubmissionResponseType"/>
+    
+    <xsd:complexType name="RespondingGateway_CrossGatewayBatchSubmissionResponseSecuredType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>			
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_CrossGatewayBatchSubmissionResponseSecured" type="tns:RespondingGateway_CrossGatewayBatchSubmissionResponseSecuredType"/>	
+	
+    <xsd:complexType name="RespondingGateway_CrossGatewayBatchSubmissionSecuredRequestType">
+        <xsd:sequence>
+            <xsd:element ref="x12:COREEnvelopeBatchSubmission"/>
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_CrossGatewayBatchSubmissionSecuredRequest" type="tns:RespondingGateway_CrossGatewayBatchSubmissionSecuredRequestType"/>
+    
 </xsd:schema>
 

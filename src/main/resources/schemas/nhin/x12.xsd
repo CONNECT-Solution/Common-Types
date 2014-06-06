@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd"
+            xmlns:ack="urn:ihe:iti:xds-b:2007:CORERULE:2.2.0"
+            xmlns:tns="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd"
+            elementFormDefault="qualified">
+    <xsd:import namespace="urn:ihe:iti:xds-b:2007:CORERULE:2.2.0" schemaLocation="../www.caqh.org/CORERule2.2.0.xsd"/>
+
+    <xsd:complexType name="X12AcknowledgementType">
+        <xsd:sequence>
+            <xsd:element ref="ack:COREEnvelopeBatchSubmissionAckRetrievalResponse" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="X12Acknowledgement" type="tns:X12AcknowledgementType"/>
+</xsd:schema>

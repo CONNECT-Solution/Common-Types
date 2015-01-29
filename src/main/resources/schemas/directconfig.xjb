@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="2.1" xmlns="http://java.sun.com/xml/ns/jaxb">
+    <bindings schemaLocation="directConfig/ConfigurationService_schema1.xsd">
+        <schemaBindings>
+            <package name="gov.hhs.fha.nhinc.direct.config" />
+        </schemaBindings>
+    </bindings>
+    <bindings schemaLocation="directConfig/ConfigurationService_schemaException.xsd">
+        <schemaBindings>
+            <package name="gov.hhs.fha.nhinc.direct.config.exception" />
+        </schemaBindings>
+    </bindings>
+</bindings>

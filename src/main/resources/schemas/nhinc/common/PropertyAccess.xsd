@@ -77,48 +77,6 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="GetPropertiesResponse" type="tns:GetPropertiesResponseType" />
-    
-    <xsd:complexType name="GetRefreshDurationRequestType" >
-        <xsd:sequence>
-            <xsd:element name="propertyFile" type="xsd:string" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="GetRefreshDurationRequest" type="tns:GetRefreshDurationRequestType" />
-    
-    <xsd:complexType name="GetRefreshDurationResponseType" >
-        <xsd:sequence>
-            <xsd:element name="durationMillis" type="xsd:int" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="GetRefreshDurationResponse" type="tns:GetRefreshDurationResponseType" />
-
-    <xsd:complexType name="GetDurationBeforeNextRefreshRequestType" >
-        <xsd:sequence>
-            <xsd:element name="propertyFile" type="xsd:string" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="GetDurationBeforeNextRefreshRequest" type="tns:GetDurationBeforeNextRefreshRequestType" />
-    
-    <xsd:complexType name="GetDurationBeforeNextRefreshResponseType" >
-        <xsd:sequence>
-            <xsd:element name="durationMillis" type="xsd:int" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="GetDurationBeforeNextRefreshResponse" type="tns:GetDurationBeforeNextRefreshResponseType" />
-
-    <xsd:complexType name="ForceRefreshRequestType" >
-        <xsd:sequence>
-            <xsd:element name="propertyFile" type="xsd:string" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ForceRefreshRequest" type="tns:ForceRefreshRequestType" />
-    
-    <xsd:complexType name="ForceRefreshResponseType" >
-        <xsd:sequence>
-            <xsd:element name="refreshed" type="xsd:boolean" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ForceRefreshResponse" type="tns:ForceRefreshResponseType" />
 
     <xsd:complexType name="GetPropertyFileLocationRequestType" >
         <xsd:sequence>

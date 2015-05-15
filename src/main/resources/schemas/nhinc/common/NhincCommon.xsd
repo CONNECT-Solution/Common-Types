@@ -52,6 +52,7 @@
             <xsd:element name="messageId" type="xsd:string" minOccurs="0"/>
             <xsd:element name="relatesToList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="implementsSpecVersion" type="xsd:string" minOccurs="0" />
+            <xsd:element name="transactionTimeout" type="xsd:int" minOccurs="0" default="-1" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="Assertion" type="tns:AssertionType"/>

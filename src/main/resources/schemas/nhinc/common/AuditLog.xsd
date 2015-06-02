@@ -13,6 +13,10 @@
 		<xsd:restriction base="xsd:string"/>
 	</xsd:simpleType>
 	<xsd:element name="direction" type="auditlog:directionSimpleType"/>
+	<xsd:simpleType name="communityIdSimpleType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:element name="communityId" type="auditlog:communityIdSimpleType"/>
 	<xsd:element name="LogEventResponse" type="nccommon:AcknowledgementType"/>
 	<!-- end common -->
 	<!-- begin subject added -->
@@ -152,6 +156,7 @@
 			<xsd:element ref="auditmessage:AuditMessage"/>
 			<xsd:element ref="auditlog:direction"/>
 			<xsd:element ref="auditlog:interface"/>
+			<xsd:element ref="auditlog:communityId" minOccurs="0"/>
 			<xsd:element name="assertion" type="nccommon:AssertionType"/>
 		</xsd:sequence>
 	</xsd:complexType>
@@ -161,6 +166,7 @@
 			<xsd:element ref="auditmessage:AuditMessage"/>
 			<xsd:element ref="auditlog:direction"/>
 			<xsd:element ref="auditlog:interface"/>
+			<xsd:element ref="auditlog:communityId" minOccurs="0" />
 <!--			<xsd:element name="assertion" type="nccommon:AssertionType"/> -->
 		</xsd:sequence>
 	</xsd:complexType>

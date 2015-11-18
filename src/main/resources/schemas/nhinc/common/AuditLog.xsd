@@ -163,7 +163,6 @@
             <xsd:element name="RemoteHCID" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RequestMessageId" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RelatesTo" minOccurs="0" type="xsd:string"/>
-            <xsd:element name="TransactionId" minOccurs="0" type="xsd:string"/>
             <xsd:element name="UserId" minOccurs="0" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -179,7 +178,6 @@
             <xsd:element name="RemoteHCID" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RequestMessageId" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RelatesTo" minOccurs="0" type="xsd:string"/>
-            <xsd:element name="TransactionId" minOccurs="0" type="xsd:string"/>
             <xsd:element name="UserId" minOccurs="0" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>

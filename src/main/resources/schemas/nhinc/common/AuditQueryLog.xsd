@@ -32,31 +32,14 @@
     <xsd:element name="QueryAuditEventsResponseType" type="tns:QueryAuditEventsResponseType"/>
     <xsd:complexType name="QueryAuditEventsRequestByRequestMessageId">
         <xsd:sequence>
-            <xsd:element name="RequestMessageId"  minOccurs="0" type="xsd:string" />
+            <xsd:element name="RequestMessageId" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="QueryAuditEventsRequestByRequestMessageId" type="tns:QueryAuditEventsRequestByRequestMessageId"/>
     
-    <xsd:complexType name="QueryAuditEventsResponseByRequestMessageId" >
-        <xsd:sequence>
-            <xsd:element name="UserId" minOccurs="0" type="xsd:string" />
-            <xsd:element name="EventType"  type="xsd:string" />
-            <xsd:element name="EventId"  type="xsd:string" />
-            <xsd:element name="EventOutcomeIndicator"  type="xsd:integer" />
-            <xsd:element name="EventTimestamp" type="xsd:dateTime" />
-            <xsd:element name="RemoteHcid" minOccurs="0" type="xsd:string" />
-            <xsd:element name="RelatesTo" minOccurs="0" type="xsd:string" />
-            <xsd:element name="Direction"  type="xsd:string" />
-            <xsd:element name="Id"  type="xsd:long" />
-            <xsd:element name="RequestMessageId"  minOccurs="0" type="xsd:string" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="QueryAuditEventsResponseByRequestMessageId" type="tns:QueryAuditEventsResponseByRequestMessageId"/>
-    
     <xsd:complexType name="QueryAuditEventsBlobRequest" >
         <xsd:sequence>
             <xsd:element name="Id" type="xsd:long" />
-            <xsd:element ref="adtmsg:AuditMessage" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="QueryAuditEventsBlobRequest" type="tns:QueryAuditEventsBlobRequest"/>

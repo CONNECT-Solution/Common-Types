@@ -26,7 +26,7 @@
             <xsd:element name="RemoteHcid" minOccurs="0" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="QueryAuditEventsSecureRequestType" type="tns:QueryAuditEventsRequestType"/>
+    <xsd:element name="QueryAuditEventsSecureRequestType" type="tns:QueryAuditEventsSecureRequestType"/>
     
     <xsd:complexType name="QueryAuditEventsResponseType" >
         <xsd:sequence>
@@ -58,7 +58,7 @@
             <xsd:element name="RequestMessageId"  minOccurs="0" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>   
-    <xsd:element name="QueryAuditEventsSecureResponseType" type="tns:QueryAuditEventsResponseType"/>
+    <xsd:element name="QueryAuditEventsSecureResponseType" type="tns:QueryAuditEventsSecureResponseType"/>
     
     <xsd:complexType name="QueryAuditEventsRequestByRequestMessageId">
         <xsd:sequence>
@@ -72,7 +72,7 @@
             <xsd:element name="RequestMessageId" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="QueryAuditEventsSecureRequestByRequestMessageId" type="tns:QueryAuditEventsRequestByRequestMessageId"/>
+    <xsd:element name="QueryAuditEventsSecureRequestByRequestMessageId" type="tns:QueryAuditEventsSecureRequestByRequestMessageId"/>
     
     <xsd:complexType name="QueryAuditEventsBlobRequest" >
         <xsd:sequence>
@@ -86,7 +86,7 @@
             <xsd:element name="Id" type="xsd:long" />
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="QueryAuditEventsBlobSecureRequest" type="tns:QueryAuditEventsBlobRequest"/>
+    <xsd:element name="QueryAuditEventsBlobSecureRequest" type="tns:QueryAuditEventsBlobSecureRequest"/>
     
     <xsd:complexType name="QueryAuditEventsBlobResponse" >
         <xsd:sequence>
@@ -100,5 +100,5 @@
             <xsd:element ref="adtmsg:AuditMessage" />
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="QueryAuditEventsBlobSecureResponse" type="tns:QueryAuditEventsBlobResponse"/>
+    <xsd:element name="QueryAuditEventsBlobSecureResponse" type="tns:QueryAuditEventsBlobSecureResponse"/>
 </xsd:schema>

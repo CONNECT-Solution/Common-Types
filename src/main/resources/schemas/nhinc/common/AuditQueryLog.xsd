@@ -84,7 +84,7 @@
 
     <xsd:complexType name="QueryAuditEventsBlobResponse" >
         <xsd:sequence>
-            <xsd:element ref="adtmsg:AuditMessage" />
+            <xsd:element minOccurs="0" ref="adtmsg:AuditMessage" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="QueryAuditEventsBlobResponse" type="tns:QueryAuditEventsBlobResponse"/>

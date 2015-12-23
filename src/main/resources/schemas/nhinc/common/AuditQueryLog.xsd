@@ -2,6 +2,7 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             targetNamespace="urn:gov:hhs:fha:nhinc:common:auditquerylog"
             xmlns:tns="urn:gov:hhs:fha:nhinc:common:auditquerylog"
+            elementFormDefault="qualified"
             xmlns:adtmsg="http://nhinc.services.com/schema/auditmessage">
     <xsd:import schemaLocation="../../../schemas/ihe/auditmessage.xsd" namespace="http://nhinc.services.com/schema/auditmessage"/>
 

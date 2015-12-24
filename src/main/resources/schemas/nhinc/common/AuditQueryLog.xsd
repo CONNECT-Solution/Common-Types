@@ -27,8 +27,8 @@
             <xsd:element name="UserId" minOccurs="0" type="xsd:string" />
             <xsd:element name="EventTypeList" minOccurs="0" type="tns:EventTypeList"/>
             <xsd:element name="EventOutcomeIndicator" minOccurs="0" type="xsd:integer" />
-            <xsd:element name="EventBeginDate" minOccurs="0" type="xsd:date" />
-            <xsd:element name="EventEndDate" minOccurs="0" type="xsd:date" />
+            <xsd:element name="EventBeginDate" minOccurs="0" type="xsd:dateTime" />
+            <xsd:element name="EventEndDate" minOccurs="0" type="xsd:dateTime" />
             <xsd:element name="RemoteHcidList" minOccurs="0" type="tns:RemoteHcidList" />
         </xsd:sequence>
     </xsd:complexType>
@@ -50,13 +50,13 @@
             <xsd:element name="RequestMessageId"  minOccurs="0" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="QueryAuditEventsResults" type="tns:QueryAuditEventsResults"/>    
+    <xsd:element name="QueryAuditEventsResults" type="tns:QueryAuditEventsResults"/>
 
     <xsd:complexType name="QueryAuditEventsResponseType" >
         <xsd:sequence>
-            <xsd:element name="QueryAuditEventsResults" minOccurs="0" maxOccurs="unbounded" type="tns:QueryAuditEventsResults"/> 
+            <xsd:element name="QueryAuditEventsResults" minOccurs="0" maxOccurs="unbounded" type="tns:QueryAuditEventsResults"/>
         </xsd:sequence>
-    </xsd:complexType>   
+    </xsd:complexType>
     <xsd:element name="QueryAuditEventsResponseType" type="tns:QueryAuditEventsResponseType"/>
 
 

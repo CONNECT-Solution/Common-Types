@@ -159,7 +159,6 @@
             <xsd:element name="EventTimestamp" maxOccurs="1" type="xsd:dateTime"/>
             <xsd:element name="EventID" maxOccurs="1" type="xsd:string"/>
             <xsd:element name="EventType" maxOccurs="1" type="xsd:string"/>
-            <xsd:element name="EventOutcomeIndicator" maxOccurs="1" type="xsd:integer"/>
             <xsd:element name="RemoteHCID" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RequestMessageId" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RelatesTo" minOccurs="0" type="xsd:string"/>
@@ -174,7 +173,6 @@
             <xsd:element name="EventTimestamp" maxOccurs="1" type="xsd:dateTime"/>
             <xsd:element name="EventID" maxOccurs="1" type="xsd:string"/>
             <xsd:element name="EventType" maxOccurs="1" type="xsd:string"/>
-            <xsd:element name="EventOutcomeIndicator" maxOccurs="1" type="xsd:integer"/>
             <xsd:element name="RemoteHCID" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RequestMessageId" minOccurs="0" type="xsd:string"/>
             <xsd:element name="RelatesTo" minOccurs="0" type="xsd:string"/>

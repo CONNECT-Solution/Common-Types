@@ -83,6 +83,9 @@
 	<xsd:simpleType name="truncated" final="restriction">
 		<xsd:restriction base="xsd:boolean"/>
 	</xsd:simpleType>
+	<xsd:simpleType name="uddiUpdatetime" final="restriction">
+		<xsd:restriction base="xsd:dateTime"/>
+	</xsd:simpleType>
 	<xsd:simpleType name="keyName">
 		<xsd:restriction base="xsd:string">
 			<xsd:maxLength value="255"/>
@@ -775,6 +778,7 @@
 			<xsd:element ref="uddi:businessEntity" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="truncated" type="uddi:truncated" use="optional"/>
+		<xsd:attribute name="uddiUpdatetime" type="uddi:uddiUpdatetime" use="optional"/>
 	</xsd:complexType>
 	<xsd:element name="businessList" type="uddi:businessList" final="restriction"/>
 	<xsd:complexType name="businessList" final="restriction">

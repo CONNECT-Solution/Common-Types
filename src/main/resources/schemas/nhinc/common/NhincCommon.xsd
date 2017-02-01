@@ -53,6 +53,8 @@
             <xsd:element name="relatesToList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="implementsSpecVersion" type="xsd:string" minOccurs="0" />
             <xsd:element name="transactionTimeout" type="xsd:int" minOccurs="0" default="-1" />
+            <xsd:element name="keepAlive" type="xsd:string" minOccurs="0" />
+            <xsd:element name="CONNECTCustomHttpHeaders" type="tns:CONNECTCustomHttpHeadersType" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="Assertion" type="tns:AssertionType"/>
@@ -287,6 +289,13 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="UrlInfo" type="tns:UrlInfoType"></xsd:element>
+    <xsd:complexType name="CONNECTCustomHttpHeadersType">
+        <xsd:sequence>
+            <xsd:element name="headerName" type="xsd:string"/>
+            <xsd:element name="headerValue" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CONNECTCustomHttpHeaders" type="tns:CONNECTCustomHttpHeadersType" />
 </xsd:schema>
 
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <!-- XML Schema Generated from XML Document on Wed Feb 08 2017 22:08:32 GMT-0500 (Eastern Standard Time) -->
+    <!-- with XmlGrid.net Free Online Service http://xmlgrid.net -->
+    <xs:element name="rxclassdata">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userInput">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="relaSource" type="xs:string"/>
+                            <xs:element name="relas" type="xs:string"/>
+                            <xs:element name="drugName" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rxclassDrugInfoList">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="rxclassDrugInfo" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="minConcept">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="rxcui" type="xs:int"/>
+                                                    <xs:element name="name" type="xs:string"/>
+                                                    <xs:element name="tty" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="rxclassMinConceptItem">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="classId" type="xs:string"/>
+                                                    <xs:element name="className" type="xs:string"/>
+                                                    <xs:element name="classType" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="rela" type="xs:string"/>
+                                        <xs:element name="relaSource" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://xml.appriss.com/gateway/v5" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.appriss.com/gateway/v5" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <!--*************************
+    Root Element Declarations
+    *************************-->
+  <xs:element name="PatientRequest" type="PatientRequestType">
+    <xs:annotation>
+      <xs:documentation>Root element for a Patient Request.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="PatientResponse" type="PatientResponseType" >
+    <xs:annotation>
+      <xs:documentation>Root element for a Patient Response.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ReportRequest" type="ReportRequestType" >
+    <xs:annotation>
+      <xs:documentation>Root element for a Report Request.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ReportResponse" type="ReportResponseType" >
+    <xs:annotation>
+      <xs:documentation>Root element for a Report Response.
+        If the ReportLink element is not sent in the ReportRequest
+        then the response is the content.  Otherwise if there was an error
+        or then the ReportResponse will be provided.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ReportResponseType">
+    <xs:sequence>
+      <xs:element name="ReportRequestId" type="xs:positiveInteger" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The id assigned to the request sent.  This is for reference. This will be present except if it was an Error only response.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="Error">
+          <xs:annotation>
+            <xs:documentation>Indicates that there was a problem performing the retrieval of the report.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:group ref="MessageGroup"></xs:group>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Disallowed">
+          <xs:annotation>
+            <xs:documentation>Indicates a permission problem in the requests..</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:group ref="MessageGroup"></xs:group>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ReportLink" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>If called with the ReturnHTMLGetLink option then this will contain the one time link to the .</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!--*******************
+    Type declared below
+    *******************-->
+
+  <xs:attributeGroup name="ContentType">
+    <xs:attribute name="Content-Type" type="xs:token" use="required">
+      <xs:annotation>
+        <xs:documentation>Contains the mime-type for reference of the resource. text/html, application/pdf ... etc.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+
+  <xs:complexType name="ProviderType">
+    <xs:annotation>
+      <xs:documentation>Information about the provider.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LocationStateCode" type="USStateCodeType" minOccurs="0" />
+      <xs:element name="Role" type="RoleType">
+        <xs:annotation>
+          <xs:documentation>The Providers Role.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FirstName" type="LimitedString">
+        <xs:annotation>
+          <xs:documentation>First name of the Provider.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LastName" type="LimitedString">
+        <xs:annotation>
+          <xs:documentation>Last name of the Provider.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:group ref="ProviderIdentifiersGroup"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LocationType">
+    <xs:annotation>
+      <xs:documentation>Information about the location making the request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="LimitedString">
+        <xs:annotation>
+          <xs:documentation>Pharmacy, hospital, clinic name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:group ref="LocationIdentifiersGroup"/>
+      <xs:element name="Address">
+        <xs:annotation>
+          <xs:documentation>The Facility Address with at least the US StateCode where the facility is located.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Street" type="LimitedString" minOccurs="0" maxOccurs="2" />
+            <xs:element name="City" type="LimitedString" minOccurs="0"/>
+            <xs:element name="StateCode" type="USStateCodeType" minOccurs="1"/>
+            <xs:element name="ZipCode" type="ZipCodeType" minOccurs="0"/>
+            <xs:element name="ZipPlusFour" type="ZipCodePlusFourType" minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReportRequestType">
+    <xs:sequence>
+      <xs:element name="Requester">
+        <xs:annotation>
+          <xs:documentation>Contains the information about who is making a request and where that request should go.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ReportLink" type="xs:token" minOccurs="0" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>If This node is present, instead of sending report html in response to this request. It return a NarxReportResponse with a GET URL that can pull the report.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Provider" type="ProviderType" />
+            <xs:element name="Location" type="LocationType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RequesterType">
+    <xs:annotation>
+      <xs:documentation>Contains the information about who is making a request and where that request should go.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LicenseeRequestId" type="LimitedString" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>An Id provided by the request will be echoed back to them in the response.  If it was an Error only response and couldn't be read in the request it may not be echoed back.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SenderSoftware" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Developer" type="LimitedString" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Identifies entity responsible for the software that generates the transaction. Software Vendor information.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Product" type="LimitedString" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Identifies the software developer’s product.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Version" type="LimitedString" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Identifies the version and release of the software product</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestDestinations" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>This is to which parties (PMPs) that the request will be sent to.
+            This accepts valid postal codes for the PMP which can answer. Like "OH", "KY".
+            If this is not provided then the settings in gateway for your web service user account will determine to
+            which parties this request will goto.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice minOccurs="1" maxOccurs="60">
+            <xs:element name="Pmp" type="USStateCodeType" />
+            <xs:element name="NonPmp" type="LimitedString" />
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Provider" type="ProviderType" />
+      <xs:element name="Location" type="LocationType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="NonMedicalIdentifierType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Military"/>
+      <xs:enumeration value="SSN"/>
+      <xs:enumeration value="StateIssuedID" />
+      <xs:enumeration value="UniqueSystemID" />
+      <xs:enumeration value="PermanentResidentCard" />
+      <xs:enumeration value="Passport" />
+      <xs:enumeration value="DriverLicense" />
+      <xs:enumeration value="SSN" />
+      <xs:enumeration value="TribalID" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="IdentifierType">
+    <xs:annotation>
+      <xs:documentation>An Identifier of the specified type. A State Jurisdiction can be provided on some types.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Type" type="NonMedicalIdentifierType" minOccurs="0"/>
+      <xs:element name="Value" type="LimitedString" />
+      <xs:element name="StateCode" type="USStateCodeType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StateLicenseIdentifierType">
+    <xs:annotation>
+      <xs:documentation>A state jurisdictioned professional license number.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Type" type="LimitedString" minOccurs="0"/>
+      <xs:element name="Value" type="LimitedString" />
+      <xs:element name="StateCode" type="USStateCodeType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="USStateCodeType">
+    <xs:annotation>
+      <xs:documentation>All US States, Territories and Military Designations. Plus Canada (CN) and Mexico (MX). </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="AA"/>
+      <xs:enumeration value="AE"/>
+      <xs:enumeration value="AK"/>
+      <xs:enumeration value="AL"/>
+      <xs:enumeration value="AP"/>
+      <xs:enumeration value="AR"/>
+      <xs:enumeration value="AS"/>
+      <xs:enumeration value="AZ"/>
+      <xs:enumeration value="CA"/>
+      <xs:enumeration value="CO"/>
+      <xs:enumeration value="CT"/>
+      <xs:enumeration value="CN"/>
+      <xs:enumeration value="DC"/>
+      <xs:enumeration value="DE"/>
+      <xs:enumeration value="FL"/>
+      <xs:enumeration value="FM"/>
+      <xs:enumeration value="GA"/>
+      <xs:enumeration value="GU"/>
+      <xs:enumeration value="HI"/>
+      <xs:enumeration value="IA"/>
+      <xs:enumeration value="ID"/>
+      <xs:enumeration value="IL"/>
+      <xs:enumeration value="IN"/>
+      <xs:enumeration value="KS"/>
+      <xs:enumeration value="KY"/>
+      <xs:enumeration value="LA"/>
+      <xs:enumeration value="MA"/>
+      <xs:enumeration value="MD"/>
+      <xs:enumeration value="ME"/>
+      <xs:enumeration value="MH"/>
+      <xs:enumeration value="MI"/>
+      <xs:enumeration value="MN"/>
+      <xs:enumeration value="MO"/>
+      <xs:enumeration value="MP"/>
+      <xs:enumeration value="MS"/>
+      <xs:enumeration value="MT"/>
+      <xs:enumeration value="MX"/>
+      <xs:enumeration value="NC"/>
+      <xs:enumeration value="ND"/>
+      <xs:enumeration value="NE"/>
+      <xs:enumeration value="NH"/>
+      <xs:enumeration value="NJ"/>
+      <xs:enumeration value="NM"/>
+      <xs:enumeration value="NV"/>
+      <xs:enumeration value="NY"/>
+      <xs:enumeration value="OH"/>
+      <xs:enumeration value="OK"/>
+      <xs:enumeration value="OR"/>
+      <xs:enumeration value="PA"/>
+      <xs:enumeration value="PR"/>
+      <xs:enumeration value="PW"/>
+      <xs:enumeration value="RI"/>
+      <xs:enumeration value="SC"/>
+      <xs:enumeration value="SD"/>
+      <xs:enumeration value="TN"/>
+      <xs:enumeration value="TX"/>
+      <xs:enumeration value="UT"/>
+      <xs:enumeration value="VA"/>
+      <xs:enumeration value="VI"/>
+      <xs:enumeration value="VT"/>
+      <xs:enumeration value="WA"/>
+      <xs:enumeration value="WI"/>
+      <xs:enumeration value="WV"/>
+      <xs:enumeration value="WY"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SexCodeType">
+    <xs:annotation>
+      <xs:documentation>Sex (M)ale (F)emale (U)nknown</xs:documentation>
+      <xs:appinfo>Sex (M)ale (F)emale (U)nknown</xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="F"/>
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="U"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CompoundDrugProductIdentifierType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="DIN"/>
+      <xs:enumeration value="HRI"/>
+      <xs:enumeration value="NDC"/>
+      <xs:enumeration value="UPC"/>
+      <xs:enumeration value="UPN"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DrugProductIdentifierType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="CPD"/>
+      <xs:enumeration value="DIN"/>
+      <xs:enumeration value="HRI"/>
+      <xs:enumeration value="NDC"/>
+      <xs:enumeration value="UPC"/>
+      <xs:enumeration value="UPN"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TransmissionFormOfRxOriginCodeType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="01">
+        <xs:annotation>
+          <xs:documentation>Written Prescription</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="02">
+        <xs:annotation>
+          <xs:documentation>Telephone Prescription</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="03">
+        <xs:annotation>
+          <xs:documentation>Telephone Emergency Prescription</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="04">
+        <xs:annotation>
+          <xs:documentation>Fax Prescription</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="05">
+        <xs:annotation>
+          <xs:documentation>Electronic Prescription</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="99">
+        <xs:annotation>
+          <xs:documentation>Other</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MethodOfPaymentCodeType">
+    <xs:annotation>
+      <xs:documentation>A code identifying the method of payment</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="01">
+        <xs:annotation>
+          <xs:documentation>Private Pay (Cash, Charge, Credit Card)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="02">
+        <xs:annotation>
+          <xs:documentation>Medicaid</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="03">
+        <xs:annotation>
+          <xs:documentation>Medicare</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="04">
+        <xs:annotation>
+          <xs:documentation>Commercial Insurance</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="05">
+        <xs:annotation>
+          <xs:documentation>Military Installations or VA</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="06">
+        <xs:annotation>
+          <xs:documentation>Worker's Compensation</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="07">
+        <xs:annotation>
+          <xs:documentation>Indian Nations</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="99">
+        <xs:annotation>
+          <xs:documentation>Other</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DrugDosageUnitsCodeType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="01">
+        <xs:annotation>
+          <xs:documentation>Each (used to report as package)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="02">
+        <xs:annotation>
+          <xs:documentation>Milliliters (ml) (for liters adjust to the decimal milliliter equivalent)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="03">
+        <xs:annotation>
+          <xs:documentation>Grams (gm) (for milligrams adjust to the decimal gram equivalent)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="USPhoneType">
+    <xs:annotation>
+      <xs:documentation>10 (ideal) or 7 digit phone number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:positiveInteger">
+      <xs:pattern value="\d{7}|\d{10}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ZipCodeType">
+    <xs:annotation>
+      <xs:documentation>5 digit zip code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:pattern value="[0-9]{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ZipCodePlusFourType">
+    <xs:annotation>
+      <xs:documentation> 4 digit zip code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:pattern value="[0-9]{4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SSNType">
+    <xs:annotation>
+      <xs:documentation>Social Security Number</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:pattern value="\d{3}-\d{2}-\d{4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DEANumberType">
+    <xs:annotation>
+      <xs:documentation>2 Alphanumeric 7 digits.  Check sum will be validated at Gateway.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NCName">
+      <xs:pattern value="[A-Z]{2}\d{7}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="NPINumberType">
+    <xs:restriction base="xs:token">
+      <xs:pattern value="\d{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="NCPDPNumberType">
+    <xs:annotation>
+      <xs:documentation>7 digit NCPDP number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:pattern value="\d{7}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="RoleType">
+    <xs:annotation>
+      <xs:documentation>The best classification of the Provider in a Request over Gateway. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Physician"/>
+      <xs:enumeration value="Pharmacist"/>
+      <xs:enumeration value="Pharmacist with prescriptive authority"/>
+      <xs:enumeration value="Nurse Practitioner"/>
+      <xs:enumeration value="Psychologist with prescriptive authority"/>
+      <xs:enumeration value="Optometrist with prescriptive authority"/>
+      <xs:enumeration value="Naturopathic Physician with prescriptive authority"/>
+      <xs:enumeration value="Physician Assistant with prescriptive authority"/>
+      <xs:enumeration value="Medical Resident with prescriptive authority"/>
+      <xs:enumeration value="Medical Intern with prescriptive authority" />
+      <xs:enumeration value="Dentist"/>
+      <xs:enumeration value="Medical Resident with no independent prescriptive authority"/>
+      <xs:enumeration value="Medical Intern with no independent prescriptive authority"/>
+      <xs:enumeration value="Prescriber Delegate - Licensed"/>
+      <xs:enumeration value="Prescriber Delegate - Unlicensed"/>
+      <xs:enumeration value="Pharmacist's Delegate - Licensed" />
+      <xs:enumeration value="Pharmacist's Delegate - Unlicensed" />
+      <xs:enumeration value="Other - Non Prescriber" />
+      <xs:enumeration value="Other Prescriber" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="DateRangeType">
+    <xs:annotation>
+      <xs:documentation>Date range</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="Begin" type="xs:date" nillable="true"/>
+      <xs:element name="End" type="xs:date" nillable="true" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="NameType">
+    <xs:sequence>
+      <xs:element name="Prefix" type="xs:token" minOccurs="0"/>
+      <xs:element name="First" type="xs:token"/>
+      <xs:element name="Middle" type="xs:token" minOccurs="0"/>
+      <xs:element name="Last" type="xs:token"/>
+      <xs:element name="Suffix" type="xs:token" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddressType">
+    <xs:annotation>
+      <xs:documentation>A Location Address. Whatever Information is available is sent back.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Street" type="xs:token" minOccurs="0" maxOccurs="2" />
+      <xs:element name="City" type="xs:token" minOccurs="0" />
+      <xs:element name="StateCode" type="USStateCodeType" minOccurs="0" />
+      <xs:element name="ZipCode" type="ZipCodeType" minOccurs="0" />
+      <xs:element name="ZipPlusFour" type="ZipCodePlusFourType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="StreetCityStateGroup">
+    <xs:sequence>
+      <xs:element name="Street" type="LimitedString" minOccurs="0" maxOccurs="2" />
+      <xs:element name="City" type="LimitedString" minOccurs="0"/>
+      <xs:element name="StateCode" type="USStateCodeType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="AddressRequiredZipType">
+    <xs:annotation>
+      <xs:documentation>zip code is required for the rx search.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:group ref="StreetCityStateGroup"/>
+      <xs:element name="ZipCode" type="ZipCodeType" minOccurs="1"/>
+      <xs:element name="ZipPlusFour" type="ZipCodePlusFourType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="LocationIdentifiersGroup">
+    <xs:annotation>
+      <xs:documentation>Must be 1 or more of DEA Number , NPI Number or NDCPDP</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="DEANumber" type="DEANumberType"/>
+        <xs:element name="NPINumber" type="NPINumberType" minOccurs="0"/>
+        <xs:element name="NCPDPNumber" type="NCPDPNumberType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element name="NPINumber" type="NPINumberType" />
+        <xs:element name="NCPDPNumber" type="NCPDPNumberType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:element name="NCPDPNumber" type="NCPDPNumberType"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:group name="ProviderIdentifiersGroup">
+    <xs:annotation>
+      <xs:documentation>Must be 1 or more of DEA Number , NPI Number or Professional License Number</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="DEANumber" type="DEANumberType"/>
+        <xs:element name="NPINumber" type="NPINumberType" minOccurs="0"/>
+        <xs:element name="ProfessionalLicenseNumber" type="ProfessionalLicenseNumberType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element name="NPINumber" type="NPINumberType"/>
+        <xs:element name="ProfessionalLicenseNumber" type="ProfessionalLicenseNumberType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element name="ProfessionalLicenseNumber" type="ProfessionalLicenseNumberType" />
+      </xs:sequence>
+    </xs:choice>
+  </xs:group>
+
+  <xs:complexType name="ProfessionalLicenseNumberType">
+    <xs:annotation>
+      <xs:documentation>A Professional License Number within the Jurisdiction of a State.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Type" type="LimitedString" />
+      <xs:element name="Value" type="LimitedString"/>
+      <xs:element name="StateCode" type="USStateCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DriversLicenseIdentifierType">
+    <xs:annotation>
+      <xs:documentation>A Professional License Number within the Jurisdiction of a State.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Value" type="xs:normalizedString"/>
+      <xs:element name="StateCode" type="USStateCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="VeterinaryPrescriptionType">
+    <xs:annotation>
+      <xs:documentation>If this Veterinary Patient Node is included this is considered a Animal otherwise it is Human by default.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AnimalName" type="xs:normalizedString"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PatientRequestType">
+    <xs:annotation>
+      <xs:documentation>Root element for a Search Request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Requester" type="RequesterType"/>
+      <xs:element name="PrescriptionRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="DateRange" type="DateRangeType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>if include will limit the search request to some time period specified time period. Igored on some types of requests.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Patient" type="PatientType">
+              <xs:annotation>
+                <xs:documentation>The Patient Information for the search request.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PatientType">
+    <xs:annotation>
+      <xs:documentation>Contains Patient Information for a request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>For the patient in the request use the Given name and Surname and optionally the Middle Name.</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="First" type="LimitedString"/>
+            <xs:element name="Middle" type="LimitedString" minOccurs="0"/>
+            <xs:element name="Last" type="LimitedString"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Birthdate" type="xs:date"/>
+      <xs:element name="SexCode" type="SexCodeType" minOccurs="0"/>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>An Address with a zip or a Phone number is required.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="Address" type="AddressRequiredZipType" />
+          <xs:element name="Phone" type="USPhoneType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:element name="Phone" type="USPhoneType" minOccurs="1"/>
+      </xs:choice>
+      <xs:element name="SSN" type="SSNType" minOccurs="0"/>
+      <xs:element name="DriversLicenseIdentifier" type="DriversLicenseIdentifierType" minOccurs="0"/>
+      <xs:element name="VeterinaryPrescription" type="VeterinaryPrescriptionType" minOccurs="0"/>
+      <xs:element name="PharmacyBenefitsMemberID" type="xs:normalizedString" minOccurs="0" />
+      <xs:element name="MedicalBenefitsMemeberID" type="xs:normalizedString" minOccurs="0" />
+      <xs:element name="MedicalRecordID" type="xs:normalizedString" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ***************************************************************************************** -->
+  <!-- PATIENT RESPONSE RELATED  -->
+  <!-- ***************************************************************************************** -->
+  <xs:complexType name="PatientResponseType">
+    <xs:sequence>
+      <xs:element name="RequestId" type="xs:positiveInteger" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The id assigned to the request sent.  This is for reference. This will be present except if it was an Error only response.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LicenseeRequestId" type="LimitedString" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>An Id provided by the request will be echoed back to them in the response.  If it was an Error only response and couldn't be read in the request it may not be echoed back.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="Error">
+          <xs:annotation>
+            <xs:documentation>If there is an error where the requests could not be performed then the only response will be this node.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:group ref="MessageGroup"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Report" type="ReportType" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Contains the information about the report.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="Response" type="ResponseType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Response for each PMP that failed to process the request. With an Error, Disallowed responses specific to that PMP. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Disclaimer" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A legal Disclaimer for display in reports.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="MessageGroup">
+    <xs:sequence>
+      <xs:element name="Message" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>This will be a message that will be safe to show to an end user. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Details" minOccurs="0" maxOccurs="unbounded" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            This will be a message that should NOT be shown to your users. It could contain more information.
+            This is information that could interest developers.
+            This data will be wrapped in a CDATA tag.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Source" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The source of the error. A request over gateway traverses many systems. This indicates where the error occurred.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="PMP"/>
+            <xs:enumeration value="GATEWAY"/>
+            <xs:enumeration value="NARXCHECK"/>
+            <xs:enumeration value="INTERCONNECT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="ResponseType">
+    <xs:sequence>
+      <xs:element name="ResponseDestinations" type="ResponseDestinationsType" />
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>The next element will be the type of response.</xs:documentation>
+        </xs:annotation>
+        <xs:element name="Error">
+          <xs:annotation>
+            <xs:documentation>Indicates that there was a problem performing the search.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:group ref="MessageGroup"></xs:group>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Disallowed">
+          <xs:annotation>
+            <xs:documentation>Indicates a permission problem in the requests..</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:group ref="MessageGroup"></xs:group>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReportType">
+    <xs:sequence>
+      <xs:element name="ResponseDestinations" type="ResponseDestinationsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The PMP systems that are the source of data for this report.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NarxCheckScore" type="NarxScoreType" minOccurs="0" />
+      <xs:element name="Message" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Can contain additional information about how request was processed.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportRequestURLs" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Contains the report link(s). If the ReportRequestURLs node is not present then no report was created.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ViewableReport" type="ReportURLType" minOccurs="1" maxOccurs="1" />
+            <xs:element name="StorableReport" type="ReportURLType" minOccurs="0" maxOccurs="1" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReportExpiration" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Contains date and time the report will expire, meaning it can no longer be requested for viewing.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MandatoryReview" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Required" type="BooleanOrUknown" />
+            <xs:element name="Role" type="RoleType" minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NarxScoreType">
+    <xs:sequence>
+      <xs:element name="Narcotics" type="xs:token" />
+      <xs:element name="Stimulants" type="xs:token" />
+      <xs:element name="Sedatives" type="xs:token" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ResponseDestinationsType">
+    <xs:annotation>
+      <xs:documentation>Contains a list of Pmp</xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="1" maxOccurs="60">
+      <xs:element name="Pmp" type="USStateCodeType" />
+      <xs:element name="NonPmp" type="LimitedString" />
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="ReportURLType">
+    <xs:annotation>
+      <xs:documentation>1 or more report links.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="URLType">
+        <xs:attributeGroup ref="ContentType"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="LimitedString">
+    <xs:restriction base="xs:token">
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="URLType">
+    <xs:annotation>
+      <xs:documentation>A URL to the report.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:anyURI"></xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="BooleanOrUknown">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="True"/>
+      <xs:enumeration value="False"/>
+      <xs:enumeration value="Unknown"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

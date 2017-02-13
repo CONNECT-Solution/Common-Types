@@ -9,7 +9,7 @@
 
     <groupId>org.connectopensource</groupId>
     <artifactId>CONNECTCommonTypesLib</artifactId>
-    <version>4.4.0-SNAPSHOT</version>
+    <version>4.4.0-PDMP</version>
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
 
@@ -93,6 +93,7 @@
                         <include>Endpoint/**/*.xsd</include>
                         <include>directConfig/**/*.xsd</include>
                         <include>caqh/**/*.xsd</include>
+                        <include>pdmp/*.xsd</include>
                     </schemaIncludes>
                     <source>${compiler.source}</source>
                     <target>${compiler.target}</target>

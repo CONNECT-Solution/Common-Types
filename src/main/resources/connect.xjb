@@ -8,6 +8,12 @@ Any modifications to this file will be lost upon recompilation of the source sch
 Generated on: 2012.09.17 at 06:25:14 PM EDT 
 
   -->
+   <bindings scd="x-schema::tns" xmlns:tns="http://xml.appriss.com/gateway/v5" if-exists="">
+        <schemaBindings map="false">
+            <package name="gov.hhs.fha.nhinc.pdmp"/>
+        </schemaBindings>       
+    </bindings>
+  
   <bindings scd="x-schema::tns" xmlns:tns="urn:gov:hhs:fha:nhinc:common:patientcorrelationfacade" if-exists="">
     <schemaBindings map="false">
       <package name="gov.hhs.fha.nhinc.common.patientcorrelationfacade"/>

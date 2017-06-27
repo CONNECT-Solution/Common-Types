@@ -45,8 +45,8 @@
     </distributionManagement>
 
     <properties>
-        <compiler.source>1.7</compiler.source>
-        <compiler.target>1.7</compiler.target>
+        <compiler.source>1.6</compiler.source>
+        <compiler.target>1.6</compiler.target>
     </properties>
 
     <build>

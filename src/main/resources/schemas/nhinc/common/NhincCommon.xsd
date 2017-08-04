@@ -61,8 +61,8 @@
     <xsd:element name="SamlConditions" type="tns:SamlConditionsType"/>
     <xsd:complexType name="SamlConditionsType">
         <xsd:sequence>
-            <xsd:element name="notBefore" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="notOnOrAfter" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="notBefore" type="xsd:string"/>
+            <xsd:element name="notOnOrAfter" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="Assertion" type="tns:AssertionType"/>

@@ -153,8 +153,8 @@
     <xsd:complexType name="CeType">
         <xsd:sequence>
             <xsd:element name="code" type="xsd:string"/>
-            <xsd:element name="codeSystem" type="xsd:string"/>
-            <xsd:element name="codeSystemName" type="xsd:string"/>
+            <xsd:element name="codeSystem" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="codeSystemName" type="xsd:string" minOccurs="0"/>
             <xsd:element name="codeSystemVersion" type="xsd:string"/>
             <xsd:element name="displayName" type="xsd:string"/>
             <xsd:element name="originalText" type="xsd:string"/>

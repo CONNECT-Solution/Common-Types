@@ -44,7 +44,7 @@
             <xsd:element name="witnessPhone" type="tns:PhoneType"/>
             <xsd:element name="userInfo" type="tns:UserType"/>
             <xsd:element name="authorized" type="xsd:boolean"/>
-            <xsd:element name="purposeOfDisclosureCoded" type="tns:CeType" minOccurs="0"/>
+            <xsd:element name="purposeOfDisclosureCoded" type="tns:CeType"/>
             <xsd:element name="samlConditions" type="tns:SamlConditionsType" minOccurs="0"/>
             <xsd:element name="samlAuthnStatement" type="tns:SamlAuthnStatementType" minOccurs="0"/>
             <xsd:element name="samlAuthzDecisionStatement" type="tns:SamlAuthzDecisionStatementType" minOccurs="0"/>
@@ -203,7 +203,7 @@
             <xsd:element name="personName" type="tns:PersonNameType"/>
             <xsd:element name="userName" type="xsd:string"/>
             <xsd:element name="org" type="tns:HomeCommunityType"/>
-            <xsd:element name="roleCoded" type="tns:CeType" minOccurs="0"/>
+            <xsd:element name="roleCoded" type="tns:CeType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="User" type="tns:UserType"/>

@@ -24,24 +24,24 @@
     <xsd:element name="QualifiedSubjectIdentifiers" type="tns:QualifiedSubjectIdentifiersType"/>
     <xsd:complexType name="AssertionType">
         <xsd:sequence>
-            <xsd:element name="address" type="tns:AddressType"/>
-            <xsd:element name="dateOfBirth" type="xsd:string"/>
-            <xsd:element name="explanationNonClaimantSignature" type="xsd:string"/>
-            <xsd:element name="haveSecondWitnessSignature" type="xsd:boolean"/>
-            <xsd:element name="haveSignature" type="xsd:boolean"/>
-            <xsd:element name="haveWitnessSignature" type="xsd:boolean"/>
+            <xsd:element name="address" type="tns:AddressType" minOccurs="0"/>
+            <xsd:element name="dateOfBirth" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="explanationNonClaimantSignature" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="haveSecondWitnessSignature" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="haveSignature" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="haveWitnessSignature" type="xsd:boolean" minOccurs="0"/>
             <xsd:element name="homeCommunity" type="tns:HomeCommunityType"/>
-            <xsd:element name="nationalProviderId" type="xsd:string"/>
-            <xsd:element name="personName" type="tns:PersonNameType"/>
-            <xsd:element name="phoneNumber" type="tns:PhoneType"/>
-            <xsd:element name="secondWitnessAddress" type="tns:AddressType"/>
-            <xsd:element name="secondWitnessName" type="tns:PersonNameType"/>
-            <xsd:element name="secondWitnessPhone" type="tns:PhoneType"/>
-            <xsd:element name="SSN" type="xsd:string"/>
-            <xsd:element name="uniquePatientId" type="xsd:string" maxOccurs="unbounded"/>
-            <xsd:element name="witnessAddress" type="tns:AddressType"/>
-            <xsd:element name="witnessName" type="tns:PersonNameType"/>
-            <xsd:element name="witnessPhone" type="tns:PhoneType"/>
+            <xsd:element name="nationalProviderId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="personName" type="tns:PersonNameType" minOccurs="0"/>
+            <xsd:element name="phoneNumber" type="tns:PhoneType" minOccurs="0"/>
+            <xsd:element name="secondWitnessAddress" type="tns:AddressType" minOccurs="0"/>
+            <xsd:element name="secondWitnessName" type="tns:PersonNameType" minOccurs="0"/>
+            <xsd:element name="secondWitnessPhone" type="tns:PhoneType" minOccurs="0"/>
+            <xsd:element name="SSN" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="uniquePatientId" type="xsd:string" maxOccurs="unbounded" minOccurs="0"/>
+            <xsd:element name="witnessAddress" type="tns:AddressType" minOccurs="0"/>
+            <xsd:element name="witnessName" type="tns:PersonNameType" minOccurs="0"/>
+            <xsd:element name="witnessPhone" type="tns:PhoneType" minOccurs="0"/>
             <xsd:element name="userInfo" type="tns:UserType"/>
             <xsd:element name="authorized" type="xsd:boolean"/>
             <xsd:element name="purposeOfDisclosureCoded" type="tns:CeType"/>

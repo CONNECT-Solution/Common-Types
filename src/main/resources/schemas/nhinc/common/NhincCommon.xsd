@@ -50,7 +50,7 @@
             <xsd:element name="samlAuthzDecisionStatement" type="tns:SamlAuthzDecisionStatementType" minOccurs="0"/>
             <xsd:element name="samlSignature" type="tns:SamlSignatureType" minOccurs="0"/>
             <xsd:element name="samlIssuer" type="tns:SamlIssuerType" minOccurs="0"/>
-            <xsd:element name="samlSubjects" type="tns:SamlSubjectsType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="samlSubjectConfirmations" type="tns:SamlSubjectConfirmationType" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="messageId" type="xsd:string" minOccurs="0"/>
             <xsd:element name="relatesToList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="implementsSpecVersion" type="xsd:string" minOccurs="0" />
@@ -305,7 +305,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="CONNECTCustomHttpHeaders" type="tns:CONNECTCustomHttpHeadersType" />
-    <xsd:complexType name="SamlSubjectsType">
+    <xsd:complexType name="SamlSubjectConfirmationType">
         <xsd:sequence>
             <xsd:element name="method" type="xsd:string" minOccurs="1"/>
             <xsd:element name="subjectCondition" type="tns:SamlConditionsType" minOccurs="0"/>

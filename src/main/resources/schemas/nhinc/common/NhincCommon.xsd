@@ -69,9 +69,9 @@
     <xsd:element name="Assertion" type="tns:AssertionType"/>
     <xsd:complexType name="SamlAuthnStatementType">
         <xsd:sequence>
-            <xsd:element name="authInstant" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="authInstant" type="xsd:string" />
             <xsd:element name="sessionIndex" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="authContextClassRef" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="authContextClassRef" type="xsd:string" />
             <xsd:element name="subjectLocalityAddress" type="xsd:string" minOccurs="0"/>
             <xsd:element name="subjectLocalityDNSName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>

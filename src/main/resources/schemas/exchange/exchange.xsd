@@ -25,7 +25,7 @@
 
   <xsd:complexType name="exchangeType">
     <xsd:sequence>
-      <xsd:element name="tLSVersions" type="tns:tLSVersionType"/>
+      <xsd:element name="tLSVersions" type="tns:tLSVersionType" minOccurs="0"/>
       <xsd:element name="url" type="xsd:anyURI"/>
       <xsd:element name="key" type="xsd:string" minOccurs="0"/>
       <xsd:element name="organizationList" type="tns:organizationListType" minOccurs="0"/>

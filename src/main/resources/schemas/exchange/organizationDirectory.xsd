@@ -9,7 +9,7 @@
       <xsd:element name="name" type="xsd:string"/>
       <xsd:element name="hcid" type="xsd:string"/>
       <!-- Organization status for example, active -->
-      <xsd:element name="status" type="xsd:string"/>
+      <xsd:element name="status" type="xsd:string" minOccurs="0"/>
       <xsd:element name="contact" type="tns:contactType" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="address" type="tns:addressType" minOccurs="0" maxOccurs="unbounded"/>
         <!-- HCID of the organization of which this organization forms a part.
@@ -25,7 +25,7 @@
   <xsd:complexType name="contactType">
     <xsd:sequence>
       <!--contact use type, for example: techincal, financial -->
-      <xsd:element name="use" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="role" type="xsd:string" minOccurs="0"/>
       <xsd:element name="givenName" type="xsd:string" minOccurs="0"/>
       <xsd:element name="familyName" type="xsd:string" minOccurs="0"/>
       <xsd:element name="phone" type="xsd:string" minOccurs="0"/>
@@ -57,7 +57,7 @@
       <!-- Nwhin service name for example, QueryForDoucments -->
       <xsd:element name="name" type="xsd:string" />
       <!--Maps to the connectionType in FHIR repsonse and holds the Protocol/Profile/Standard to be used with this endpoint connection -->
-      <xsd:element name="profile" type="xsd:string"/>
+      <xsd:element name="profile" type="xsd:string" minOccurs="0"/>
       <!--service endpoint -->
       <xsd:element name="serviceURL" type="xsd:anyURI"/>
       <!--multispec version -->

@@ -6,7 +6,7 @@
             elementFormDefault="qualified">
   <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange:directory" schemaLocation="organizationDirectory.xsd"/>
 
-  <xsd:element name="ExchangeInfo" type="tns:exchangeInfoType"/>
+  <xsd:element name="exchangeInfo" type="tns:exchangeInfoType"/>
   <xsd:complexType name="exchangeInfoType">
     <xsd:sequence>
       <xsd:element name="refreshInterval" type="xsd:long"/>

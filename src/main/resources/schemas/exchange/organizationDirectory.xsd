@@ -19,6 +19,7 @@
         If this is a top-level organization, then the partOf object is not specified   -->
       <xsd:element name="partOf" type="xsd:string" minOccurs="0"/>
       <xsd:element name="endpointList" type="tns:endpointListType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="targetRegion" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
     </xsd:sequence>
   </xsd:complexType>
 
@@ -28,7 +29,9 @@
       <xsd:element name="role" type="xsd:string" minOccurs="0"/>
       <xsd:element name="givenName" type="xsd:string" minOccurs="0"/>
       <xsd:element name="familyName" type="xsd:string" minOccurs="0"/>
-      <xsd:element name="phone" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="fullName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="phone" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="address" type="tns:addressType" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
@@ -43,6 +46,7 @@
       <xsd:element name="state"  type="xsd:string" minOccurs="0"/>
       <xsd:element name="country"  type="xsd:string" minOccurs="0"/>
       <xsd:element name="zipcode"  type="xsd:string" minOccurs="0"/>
+      <xsd:element name="addressLine" type="xsd:string" minOccurs ="0" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
 
@@ -58,10 +62,7 @@
       <xsd:element name="name" type="xsd:string" />
       <!--Maps to the connectionType in FHIR repsonse and holds the Protocol/Profile/Standard to be used with this endpoint connection -->
       <xsd:element name="profile" type="xsd:string" minOccurs="0"/>
-      <!--service endpoint -->
-      <xsd:element name="serviceURL" type="xsd:anyURI"/>
-      <!--multispec version -->
-      <xsd:element name="serviceVersion" type="xsd:string" />
+      <xsd:element name="endpointConfigurationList" type="tns:endpointConfigurationListType"/>
       <xsd:element name="payloadType" type="xsd:string" minOccurs="0"  maxOccurs="unbounded"/>
       <xsd:element name="payloadFormat" type="xsd:string" minOccurs="0"  maxOccurs="unbounded"/>
       <!--PurposesOfUse Value Set for SAML header and/or access control-->
@@ -89,5 +90,20 @@
     <xsd:sequence>
       <xsd:element name="usecase" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="endpointConfigurationListType">
+      <xsd:sequence>
+          <xsd:element name="endpointConfiguration" type="tns:endpointConfigurationType" maxOccurs="unbounded"/>
+      </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="endpointConfigurationType">
+      <xsd:sequence>
+          <!--service endpoint -->
+          <xsd:element name="url" type="xsd:anyURI"/>
+          <!--multispec version -->
+          <xsd:element name="version" type="xsd:string"/>
+      </xsd:sequence>
   </xsd:complexType>
 </xsd:schema>

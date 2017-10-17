@@ -101,9 +101,9 @@
   <xsd:complexType name="endpointConfigurationType">
       <xsd:sequence>
           <!--service endpoint -->
-          <xsd:element name="url" type="xsd:anyURI"/>
+          <xsd:element name="url" type="xsd:anyURI"  minOccurs="0"/>
           <!--multispec version -->
-          <xsd:element name="version" type="xsd:string"/>
+          <xsd:element name="version" type="xsd:string"  minOccurs="0"/>
       </xsd:sequence>
   </xsd:complexType>
 </xsd:schema>

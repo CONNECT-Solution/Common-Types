@@ -12,7 +12,7 @@
       <xsd:element name="status" type="xsd:string" minOccurs="0"/>
       <xsd:element name="contact" type="tns:contactType" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="address" type="tns:addressType" minOccurs="0" maxOccurs="unbounded"/>
-        <!-- HCID of the organization of which this organization forms a part.
+        <!-- partOf holds the HCID of the organization of which this organization forms a part.
         If this is a Carequality Connection, then the partOf object points to the Carequality Implementer.
         If this is a eHealth Exchange Sub-Participant, then the partOf object points to the eHealth Exchange Participant
         If this is a lower-level organization, then the partOf object points to the immediate parent organization
@@ -29,7 +29,8 @@
       <xsd:element name="role" type="xsd:string" minOccurs="0"/>
       <xsd:element name="givenName" type="xsd:string" minOccurs="0"/>
       <xsd:element name="familyName" type="xsd:string" minOccurs="0"/>
-      <xsd:element name="fullName" type="xsd:string" minOccurs="0"/>
+      <!-- Map to UDDI schema's personName element-->
+      <xsd:element name="fullName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="phone" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="address" type="tns:addressType" minOccurs="0" maxOccurs="unbounded"/>
@@ -46,6 +47,7 @@
       <xsd:element name="state"  type="xsd:string" minOccurs="0"/>
       <xsd:element name="country"  type="xsd:string" minOccurs="0"/>
       <xsd:element name="zipcode"  type="xsd:string" minOccurs="0"/>
+      <!-- Map to UDDI schema's addressLine element-->
       <xsd:element name="addressLine" type="xsd:string" minOccurs ="0" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>

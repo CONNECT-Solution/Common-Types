@@ -45,6 +45,8 @@
             <xsd:element name="userInfo" type="tns:UserType"/>
             <xsd:element name="authorized" type="xsd:boolean"/>
             <xsd:element name="purposeOfDisclosureCoded" type="tns:CeType"/>
+            <xsd:element name="acpAttribute" type="xsd:anyURI" minOccurs="0"/>
+            <xsd:element name="instanceAcpAttribute" type="xsd:anyURI" minOccurs="0"/>
             <xsd:element name="samlConditions" type="tns:SamlConditionsType" minOccurs="0"/>
             <xsd:element name="samlAuthnStatement" type="tns:SamlAuthnStatementType" minOccurs="0"/>
             <xsd:element name="samlAuthzDecisionStatement" type="tns:SamlAuthzDecisionStatementType" minOccurs="0"/>

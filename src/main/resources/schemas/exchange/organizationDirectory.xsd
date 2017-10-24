@@ -18,7 +18,7 @@
         If this is a lower-level organization, then the partOf object points to the immediate parent organization
         If this is a top-level organization, then the partOf object is not specified   -->
       <xsd:element name="partOf" type="xsd:string" minOccurs="0"/>
-      <xsd:element name="endpointList" type="tns:endpointListType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="endpointList" type="tns:endpointListType" minOccurs="0"/>
       <xsd:element name="targetRegion" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
     </xsd:sequence>
   </xsd:complexType>
@@ -54,7 +54,7 @@
 
   <xsd:complexType name="endpointListType">
     <xsd:sequence>
-      <xsd:element name="endpoint" type="tns:endpointType" minOccurs="0"/>
+      <xsd:element name="endpoint" type="tns:endpointType" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
 

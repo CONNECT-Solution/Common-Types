@@ -18,7 +18,7 @@
         If this is a lower-level organization, then the partOf object points to the immediate parent organization
         If this is a top-level organization, then the partOf object is not specified   -->
       <xsd:element name="partOf" type="xsd:string" minOccurs="0"/>
-      <xsd:element name="endpointList" type="tns:endpointListType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="endpointList" type="tns:endpointListType" minOccurs="0"/>
       <xsd:element name="targetRegion" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
     </xsd:sequence>
   </xsd:complexType>
@@ -61,7 +61,7 @@
   <xsd:complexType name="endpointType">
     <xsd:sequence>
       <!-- Nwhin service name for example, QueryForDoucments -->
-      <xsd:element name="name" type="xsd:string" />
+      <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
       <!--Maps to the connectionType in FHIR repsonse and holds the Protocol/Profile/Standard to be used with this endpoint connection -->
       <xsd:element name="profile" type="xsd:string" minOccurs="0"/>
       <xsd:element name="endpointConfigurationList" type="tns:endpointConfigurationListType"/>

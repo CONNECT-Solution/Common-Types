@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:gov:hhs:fha:nhinc:common:configadmin" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+    xmlns:addr="http://www.w3.org/2005/08/addressing" xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon" targetNamespace="urn:gov:hhs:fha:nhinc:common:configadmin" elementFormDefault="qualified">
+    <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="../common/NhincCommon.xsd" />
+    
+    <xsd:complexType name="ConfigAssertionType">
+        <xsd:sequence>
+            <xsd:element name="userInfo" type="nccommon:UserType" />
+            <xsd:element name="issueInstance" type="xsd:string" />
+            <xsd:element name="issueFormat" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ConfigAssertion" type="tns:ConfigAssertionType" />
+
+    <xsd:complexType name="ImportCertificateRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="importCertRequest" type="tns:ImportCertificateRequestType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ImportCertificateRequestMessage" type="tns:ImportCertificateRequestMessageType" />
+    
+    <xsd:complexType name="ImportCertificateRequestType">
+        <xsd:sequence>
+            <xsd:element name="alias" type="xsd:string" />
+            <xsd:element name="certData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"  minOccurs="1" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ImportCertificateRequest" type="tns:ImportCertificateRequestType" />
+        
+    <xsd:complexType name="ImportCertificateResponseMessageType">
+        <xsd:sequence>
+            <xsd:element name="status" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ImportCertificateResponseMessage" type="tns:ImportCertificateResponseMessageType"/>
+    
+</xsd:schema>

@@ -45,11 +45,14 @@
             <xsd:element name="userInfo" type="tns:UserType"/>
             <xsd:element name="authorized" type="xsd:boolean"/>
             <xsd:element name="purposeOfDisclosureCoded" type="tns:CeType"/>
+            <xsd:element name="acpAttribute" type="xsd:anyURI" minOccurs="0"/>
+            <xsd:element name="instanceAcpAttribute" type="xsd:anyURI" minOccurs="0"/>
             <xsd:element name="samlConditions" type="tns:SamlConditionsType" minOccurs="0"/>
             <xsd:element name="samlAuthnStatement" type="tns:SamlAuthnStatementType" minOccurs="0"/>
             <xsd:element name="samlAuthzDecisionStatement" type="tns:SamlAuthzDecisionStatementType" minOccurs="0"/>
             <xsd:element name="samlSignature" type="tns:SamlSignatureType" minOccurs="0"/>
             <xsd:element name="samlIssuer" type="tns:SamlIssuerType" minOccurs="0"/>
+            <xsd:element name="samlSubjectConfirmations" type="tns:SamlSubjectConfirmationType" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="messageId" type="xsd:string" minOccurs="0"/>
             <xsd:element name="relatesToList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="implementsSpecVersion" type="xsd:string" minOccurs="0" />
@@ -68,9 +71,9 @@
     <xsd:element name="Assertion" type="tns:AssertionType"/>
     <xsd:complexType name="SamlAuthnStatementType">
         <xsd:sequence>
-            <xsd:element name="authInstant" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="authInstant" type="xsd:string" />
             <xsd:element name="sessionIndex" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="authContextClassRef" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="authContextClassRef" type="xsd:string" />
             <xsd:element name="subjectLocalityAddress" type="xsd:string" minOccurs="0"/>
             <xsd:element name="subjectLocalityDNSName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
@@ -304,6 +307,15 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="CONNECTCustomHttpHeaders" type="tns:CONNECTCustomHttpHeadersType" />
+    <xsd:complexType name="SamlSubjectConfirmationType">
+        <xsd:sequence>
+            <xsd:element name="method" type="xsd:string" minOccurs="1"/>
+            <xsd:element name="subjectCondition" type="tns:SamlConditionsType" minOccurs="0"/>
+            <xsd:element name="recipient" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="inResponseTo" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="address" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
 </xsd:schema>
 
 

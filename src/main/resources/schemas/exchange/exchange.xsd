@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:org="urn:gov:hhs:fha:nhinc:exchange:directory"
+            xmlns:tns="urn:gov:hhs:fha:nhinc:exchange"
+            targetNamespace="urn:gov:hhs:fha:nhinc:exchange"
+            elementFormDefault="qualified">
+  <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange:directory" schemaLocation="organizationDirectory.xsd"/>
+
+  <xsd:element name="exchangeInfo" type="tns:exchangeInfoType"/>
+  <xsd:complexType name="exchangeInfoType">
+    <xsd:sequence>
+        <!--refreshInterval is in minutes -->
+      <xsd:element name="refreshInterval" type="xsd:long" minOccurs="0" default="1440"/>
+      <!--A value of 1 means, system will have 1 exchange file with 1 backup-->
+      <xsd:element name="maxNumberOfBackups" type="xsd:integer" minOccurs="0" default="0"/>
+      <xsd:element name="lastUpdated" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="defaultExchange" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="exchanges" type="tns:exchangeListType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="exchangeListType">
+    <xsd:sequence>
+      <xsd:element name="exchange" type="tns:exchangeType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="exchangeType">
+    <xsd:sequence>
+      <xsd:element name="tLSVersions" type="tns:tLSVersionType" minOccurs="0"/>
+      <xsd:element name="url" type="xsd:anyURI" minOccurs="0"/>
+      <xsd:element name="key" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="organizationList" type="tns:organizationListType" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="type" type="xsd:string"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="tLSVersionType">
+    <xsd:sequence>
+      <xsd:element name="supports" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="organizationListType">
+    <xsd:sequence>
+      <xsd:element name="organization" type="org:organizationType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

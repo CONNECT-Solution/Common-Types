@@ -6,8 +6,8 @@
     <xsd:complexType name="ConfigAssertionType">
         <xsd:sequence>
             <xsd:element name="userInfo" type="nccommon:UserType" />
-            <xsd:element name="issueInstance" type="xsd:string" />
-            <xsd:element name="issueFormat" type="xsd:string" />
+            <xsd:element name="configInstance" type="xsd:string" />
+            <xsd:element name="authMethod" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ConfigAssertion" type="tns:ConfigAssertionType" />

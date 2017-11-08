@@ -22,7 +22,7 @@
     
     <xsd:complexType name="ImportCertificateRequestType">
         <xsd:sequence>
-            <xsd:element name="alias" type="xsd:string" />
+            <xsd:element name="alias" type="xsd:string" minOccurs="1" maxOccurs="1" />
             <xsd:element name="certData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"  minOccurs="1" maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>

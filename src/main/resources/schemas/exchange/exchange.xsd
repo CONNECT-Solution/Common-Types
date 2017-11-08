@@ -15,6 +15,7 @@
       <xsd:element name="maxNumberOfBackups" type="xsd:integer" minOccurs="0" default="0"/>
       <xsd:element name="lastUpdated" type="xsd:dateTime" minOccurs="0"/>
       <xsd:element name="defaultExchange" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="refreshActive" type="xsd:boolean" default="true"/>
       <xsd:element name="exchanges" type="tns:exchangeListType"/>
     </xsd:sequence>
   </xsd:complexType>
@@ -27,9 +28,10 @@
 
   <xsd:complexType name="exchangeType">
     <xsd:sequence>
-      <xsd:element name="tLSVersions" type="tns:tLSVersionType" minOccurs="0"/>
+      <xsd:element name="name" type="xsd:string" minOccurs="0"/>
       <xsd:element name="url" type="xsd:anyURI" minOccurs="0"/>
       <xsd:element name="key" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="tLSVersions" type="tns:tLSVersionType" minOccurs="0"/>
       <xsd:element name="organizationList" type="tns:organizationListType" minOccurs="0"/>
     </xsd:sequence>
     <xsd:attribute name="type" type="xsd:string"/>

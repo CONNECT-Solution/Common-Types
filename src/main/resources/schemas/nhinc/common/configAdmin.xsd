@@ -28,73 +28,81 @@
     </xsd:complexType>
     <xsd:element name="ImportCertificateRequest" type="tns:ImportCertificateRequestType" />
         
-    <xsd:complexType name="ImportCertificateResponseMessageType">
+    <xsd:complexType name="SimpleResponseMessageType">
         <xsd:sequence>
             <xsd:element name="status" type="xsd:boolean"/>
             <xsd:element name="message" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="ImportCertificateResponseMessage" type="tns:ImportCertificateResponseMessageType"/>
+    <xsd:element name="ImportCertificateResponseMessage" type="tns:SimpleResponseMessageType"/>
     
+	<xsd:complexType name="ListKeyStoresRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListKeyStoresRequestMessage" type="tns:ListKeyStoresRequestMessageType" />
+    
+    <xsd:complexType name="ListKeyStoresResponseMessageType">
+         <xsd:sequence>
+            <xsd:element name="certList" type="tns:ListCertificateType" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListKeyStoresResponseMessage" type="tns:ListKeyStoresResponseMessageType"/>
     
     <xsd:complexType name="ListTrustStoresRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="refreshCertCache" minOccurs="1" maxOccurs="1" default="false" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListTrustStoresRequestMessage" type="tns:ListTrustStoresRequestMessageType" />
     
     <xsd:complexType name="ListTrustStoresResponseMessageType">
          <xsd:sequence>
-            <xsd:element name="certData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="certList" type="tns:ListCertificateType" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListTrustStoresResponseMessage" type="tns:ListTrustStoresResponseMessageType"/>
+    
+    <xsd:complexType name="ListCertificateType">
+         <xsd:sequence>
+			<xsd:element name="alias" type="xsd:string" />
+            <xsd:element name="certData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListCertificate" type="tns:ListCertificateType" />
+    
+    
     
     <xsd:complexType name="EditCertificateRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="editCertRequest" type="tns:EditCertificateRequestType" minOccurs="1" maxOccurs="1" />
             <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="isTrustStore" type="xsd:boolean" minOccurs="1" maxOccurs="1" default="true" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="EditCertificateRequestMessage" type="tns:EditCertificateRequestMessageType" />
     
     <xsd:complexType name="EditCertificateRequestType">
         <xsd:sequence>
-            <xsd:element name="alias" type="xsd:string" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="oldAlias" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="newAlias" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="certData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"  minOccurs="1" maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="EditCertificateRequest" type="tns:EditCertificateRequestType" />
-        
-    <xsd:complexType name="EditCertificateResponseMessageType">
-        <xsd:sequence>
-            <xsd:element name="status" type="xsd:boolean"/>
-			<xsd:element name="message" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="EditCertificateResponseMessage" type="tns:EditCertificateResponseMessageType"/>
+    
+    <xsd:element name="EditCertificateResponseMessage" type="tns:SimpleResponseMessageType"/>
     
 	 <xsd:complexType name="DeleteCertificateRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="deleteCertRequest" type="tns:DeleteCertificateRequestType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="alias" type="xsd:string" minOccurs="1" maxOccurs="1" />
             <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="DeleteCertificateRequestMessage" type="tns:DeleteCertificateRequestMessageType" />
     
-    <xsd:complexType name="DeleteCertificateRequestType">
-        <xsd:sequence>
-            <xsd:element name="alias" type="xsd:string" minOccurs="1" maxOccurs="1" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="DeleteCertificateRequest" type="tns:DeleteCertificateRequestType" />
-        
-    <xsd:complexType name="DeleteCertificateResponseMessageType">
-        <xsd:sequence>
-            <xsd:element name="status" type="xsd:boolean"/>
-			<xsd:element name="message" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="DeleteCertificateResponseMessage" type="tns:DeleteCertificateResponseMessageType"/>
+    <xsd:element name="DeleteCertificateResponseMessage" type="tns:SimpleResponseMessageType"/>
 
 </xsd:schema>

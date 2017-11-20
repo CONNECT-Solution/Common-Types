@@ -73,13 +73,10 @@
     </xsd:complexType>
     <xsd:element name="ListCertificate" type="tns:ListCertificateType" />
     
-    
-    
     <xsd:complexType name="EditCertificateRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="editCertRequest" type="tns:EditCertificateRequestType" minOccurs="1" maxOccurs="1" />
             <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
-			<xsd:element name="isTrustStore" type="xsd:boolean" minOccurs="1" maxOccurs="1" default="true" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="EditCertificateRequestMessage" type="tns:EditCertificateRequestMessageType" />

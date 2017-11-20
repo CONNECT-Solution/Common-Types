@@ -24,6 +24,7 @@
         <xsd:sequence>
             <xsd:element name="alias" type="xsd:string" minOccurs="1" maxOccurs="1" />
             <xsd:element name="certData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"  minOccurs="1" maxOccurs="1" />
+            <xsd:element name="refreshCache" type="xsd:boolean"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ImportCertificateRequest" type="tns:ImportCertificateRequestType" />

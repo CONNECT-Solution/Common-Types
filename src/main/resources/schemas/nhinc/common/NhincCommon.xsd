@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:gov:hhs:fha:nhinc:common:nhinccommon" 
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:gov:hhs:fha:nhinc:common:nhinccommon"
     xmlns:addr="http://www.w3.org/2005/08/addressing" targetNamespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" elementFormDefault="qualified">
     <xsd:import namespace="http://www.w3.org/2005/08/addressing" schemaLocation="../../www.w3.org/2005/08/addressing/ws-addr.xsd" />
-   
+
     <xsd:complexType name="QualifiedSubjectIdentifierType">
         <xsd:sequence>
             <xsd:element name="SubjectIdentifier" type="xsd:string"/>
@@ -101,7 +101,7 @@
             <xsd:element name="version" type="xsd:string" minOccurs="0"/>
             <xsd:element name="issuer" type="xsd:string" minOccurs="0"/>
             <xsd:element name="issuerFormat" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="subject" type="xsd:string" minOccurs="0"/>     
+            <xsd:element name="subject" type="xsd:string" minOccurs="0"/>
             <xsd:element name="conditions" type="tns:SamlAuthzDecisionStatementEvidenceConditionsType" minOccurs="0"/>
             <xsd:element name="accessConsentPolicy" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="instanceAccessConsentPolicy" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
@@ -210,7 +210,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="User" type="tns:UserType"/>
-    <!-- 
+    <!--
     <xsd:complexType name="EPRType">
         <xsd:sequence>
             <xsd:element name="EndpointReference" type="addr:EndpointReferenceType"/>
@@ -234,6 +234,7 @@
                 <xsd:element name="epr" type="addr:EndpointReferenceType"/>
                 <xsd:element name="homeCommunity" type="tns:HomeCommunityType"/>
                 <xsd:element name="url" type="xsd:string"/>
+                <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
             </xsd:choice>
             <xsd:element name="useSpecVersion" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
@@ -283,6 +284,7 @@
         <xsd:sequence>
             <xsd:element name="nhinTargetCommunity" type="tns:NhinTargetCommunityType" maxOccurs="unbounded"/>
             <xsd:element name="useSpecVersion" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="NhinTargetCommunities" type="tns:NhinTargetCommunitiesType"/>

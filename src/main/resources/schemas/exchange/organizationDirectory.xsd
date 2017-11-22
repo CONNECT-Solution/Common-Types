@@ -60,6 +60,7 @@
 
   <xsd:complexType name="endpointType">
     <xsd:sequence>
+      <xsd:element name="description" type="xsd:string" minOccurs="0"/>
       <!-- Nwhin service name for example, QueryForDoucments -->
       <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
       <!--Maps to the connectionType in FHIR repsonse and holds the Protocol/Profile/Standard to be used with this endpoint connection -->

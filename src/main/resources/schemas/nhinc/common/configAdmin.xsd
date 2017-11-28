@@ -8,6 +8,7 @@
             <xsd:element name="userInfo" type="nccommon:UserType" />
             <xsd:element name="configInstance" type="xsd:string" />
             <xsd:element name="authMethod" type="xsd:string" />
+			<xsd:element name="hashToken" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ConfigAssertion" type="tns:ConfigAssertionType" />

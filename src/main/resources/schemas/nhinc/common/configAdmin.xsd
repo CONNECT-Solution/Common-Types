@@ -8,7 +8,6 @@
             <xsd:element name="userInfo" type="nccommon:UserType" />
             <xsd:element name="configInstance" type="xsd:string" />
             <xsd:element name="authMethod" type="xsd:string" />
-			<xsd:element name="hashToken" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ConfigAssertion" type="tns:ConfigAssertionType" />
@@ -26,6 +25,7 @@
             <xsd:element name="alias" type="xsd:string" minOccurs="1" maxOccurs="1" />
             <xsd:element name="certData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"  minOccurs="1" maxOccurs="1" />
             <xsd:element name="refreshCache" type="xsd:boolean"/>
+			<xsd:element name="hashToken" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ImportCertificateRequest" type="tns:ImportCertificateRequestType" />
@@ -88,6 +88,7 @@
         <xsd:sequence>
             <xsd:element name="oldAlias" type="xsd:string" minOccurs="1" maxOccurs="1" />
             <xsd:element name="newAlias" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="hashToken" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="EditCertificateRequest" type="tns:EditCertificateRequestType" />
@@ -96,6 +97,7 @@
         <xsd:sequence>
             <xsd:element name="alias" type="xsd:string" minOccurs="1" maxOccurs="1" />
             <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="hashToken" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="DeleteCertificateRequestMessage" type="tns:DeleteCertificateRequestMessageType" />

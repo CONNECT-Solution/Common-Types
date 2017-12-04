@@ -32,8 +32,8 @@
       <xsd:element name="url" type="xsd:anyURI" minOccurs="0"/>
       <xsd:element name="key" type="xsd:string" minOccurs="0"/>
       <xsd:element name="tLSVersions" type="tns:tLSVersionType" minOccurs="0"/>
-      <xsd:element name="organizationList" type="tns:organizationListType" minOccurs="0"/>
       <xsd:element name="isDisabled" type="xsd:boolean" default="false"/>
+      <xsd:element name="organizationList" type="tns:organizationListType" minOccurs="0"/>
     </xsd:sequence>
     <xsd:attribute name="type" type="xsd:string"/>
   </xsd:complexType>

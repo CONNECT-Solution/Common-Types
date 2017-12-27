@@ -54,7 +54,9 @@
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <includes>
-                    <include>**/*</include>
+                    <!-- <include>**/*</include>  -->
+                    <include>**/exchange</include>
+                    <include>**/uddi</include>
                 </includes>
             </resource>
         </resources>
@@ -73,16 +75,10 @@
                 <version>0.13.1</version>
                 <configuration>
                     <generateDirectory>${project.build.directory}/generated-sources/</generateDirectory>
-                    <bindingDirectory>${basedir}/src/main/resources/schemas/</bindingDirectory>
                     <schemaDirectory>${basedir}/src/main/resources/schemas/</schemaDirectory>
                     <strict>${xjc.strict}</strict>
                     <schemaIncludes>
-                        <include>nhinc/**/*.xsd</include>
-                        <include>docs.oasis-open.org/**/*.xsd</include>
-                        <include>ebRS/**/*.xsd</include>
-                        <include>ihe/**/*.xsd</include>
-                        <include>nhin/**/*.xsd</include>
-                        <include>oasis/**/*.xsd</include>
+						<include>nhinc/common/**/*.xsd</include>  
                         <include>uddi/uddi_v3.xsd</include>
                         <include>uddi/uddi_v3custody.xsd</include>
                         <include>uddi/uddi_v3policy_instanceParms.xsd</include>
@@ -90,11 +86,40 @@
                         <include>uddi/uddi_v3subscription.xsd</include>
                         <include>www.w3.org/**/*.xsd</include>
                         <include>xmlsoap.org/**/*.xsd</include>
-                        <include>Endpoint/**/*.xsd</include>
-                        <include>directConfig/**/*.xsd</include>
-                        <include>caqh/**/*.xsd</include>
-                        <include>exchange/*.xsd</include>
+						<include>exchange/*.xsd</include>
                     </schemaIncludes>
+					<schemaExcludes>
+                        <exclude>docs.oasis-open.org/**/*.xsd</exclude>  
+                        <exclude>ebRS/**/*.xsd</exclude>  
+                        <exclude>ihe/**/*.xsd</exclude>   
+                        <exclude>nhin/**/*.xsd</exclude>  
+                        <exclude>oasis/**/*.xsd</exclude> 
+                        <exclude>Endpoint/**/*.xsd</exclude> 
+                        <exclude>directConfig/**/*.xsd</exclude> 
+                        <exclude>caqh/**/*.xsd</exclude> 
+					</schemaExcludes>
+					<bindingDirectory>${basedir}/src/main/resources/schemas/</bindingDirectory>
+					<bindingIncludes>
+						<include>nhinc/common/**/*.xjb</include>  
+                        <include>uddi/uddi_v3.xjb</include>
+                        <include>uddi/uddi_v3custody.xjb</include>
+                        <include>uddi/uddi_v3policy_instanceParms.xjb</include>
+                        <include>uddi/uddi_v3subscriptionListener.xjb</include>
+                        <include>uddi/uddi_v3subscription.xjb</include>
+                        <include>www.w3.org/**/*.xjb</include>
+                        <include>xmlsoap.org/**/*.xjb</include>
+						<include>exchange/*.xjb</include>
+                    </bindingIncludes>
+					<bindingExcludes>
+                        <exclude>docs.oasis-open.org/**/*.xjb</exclude>  
+                        <exclude>ebRS/**/*.xjb</exclude>  
+                        <exclude>ihe/**/*.xjb</exclude>   
+                        <exclude>nhin/**/*.xjb</exclude>  
+                        <exclude>oasis/**/*.xjb</exclude> 
+                        <exclude>Endpoint/**/*.xjb</exclude> 
+                        <exclude>directConfig/**/*.xjb</exclude> 
+                        <exclude>caqh/**/*.xjb</exclude> 
+					</bindingExcludes>				
                     <source>${compiler.source}</source>
                     <target>${compiler.target}</target>
                 </configuration>

@@ -54,7 +54,9 @@
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <includes>
-                    <include>**/*</include>
+                    <!-- <include>**/*</include>  -->
+                    <include>**/exchange</include>
+                    <include>**/uddi</include>
                 </includes>
             </resource>
         </resources>
@@ -67,7 +69,7 @@
                     <pushChanges>false</pushChanges>
                 </configuration>
             </plugin>
-            <plugin>
+           <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>0.13.1</version>
@@ -123,10 +125,38 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.6</version>
-                <configuration>
-                    <!-- use baseVersion instead of unique timestamp version to support skinny WARS -->
-                    <outputFileNameMapping>@{artifactId}@-@{baseVersion}@.@{extension}@</outputFileNameMapping>
-                </configuration>
+               
+                
+                <executions>
+                    
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <!-- use baseVersion instead of unique timestamp version to support skinny WARS -->
+                            <outputFileNameMapping>@{artifactId}@-@{baseVersion}@.@{extension}@</outputFileNameMapping>
+                        </configuration>
+                    </execution>
+                    <execution>
+                           <id>transformer</id>
+                           <phase>package</phase>
+                           <goals>
+                               <goal>jar</goal>
+                           </goals>
+                           <configuration>
+                               <classifier>transformer</classifier>
+                               <includes>
+                                   <include>**/uddi/**</include>
+                                   <include>**/exchange/**</include>
+                                   <include>**/properties/*</include>
+                               </includes>
+                               <excludes>
+                                   <exclude>**/test.*</exclude>
+                               </excludes>
+                           </configuration>
+                       </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

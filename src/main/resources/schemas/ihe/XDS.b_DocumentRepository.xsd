@@ -92,4 +92,10 @@
         </xs:sequence>
     </xs:complexType>
     <xs:element name="ProvideAndRegisterDocumentSetRequest" type="ProvideAndRegisterDocumentSetRequestType"/>
+    <xs:complexType name="RegisterDocumentSetRequestType">
+        <xs:sequence>
+            <xs:element ref="lcm:SubmitObjectsRequest"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RegisterDocumentSetRequest" type="RegisterDocumentSetRequestType"/>
 </xs:schema>

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:gov:hhs:fha:nhinc:common:nhinccommonadapter" xmlns:hl7="urn:hl7-org:v3" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:ihe="urn:ihe:iti:xds-b:2007" xmlns:iheaudit="http://nhinc.services.com/schema/auditmessage" xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2" xmlns:x12="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd" xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon" xmlns:subb2obcdc="urn:gov:hhs:fha:nhinc:common:subscriptionb2overrideforcdc" xmlns:subb2obdoc="urn:gov:hhs:fha:nhinc:common:subscriptionb2overridefordocuments" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:context:schema:os" xmlns:edxlde="urn:oasis:names:tc:emergency:EDXL:DE:1.0" targetNamespace="urn:gov:hhs:fha:nhinc:common:nhinccommonadapter" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:gov:hhs:fha:nhinc:common:nhinccommonadapter"
+            xmlns:hl7="urn:hl7-org:v3" xmlns:query="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0"
+            xmlns:rs="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" xmlns:ihe="urn:ihe:iti:xds-b:2007"
+            xmlns:iheaudit="http://nhinc.services.com/schema/auditmessage" xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2"
+            xmlns:x12="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd"
+            xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon"
+            xmlns:subb2obcdc="urn:gov:hhs:fha:nhinc:common:subscriptionb2overrideforcdc"
+            xmlns:subb2obdoc="urn:gov:hhs:fha:nhinc:common:subscriptionb2overridefordocuments"
+            xmlns:xacml="urn:oasis:names:tc:xacml:2.0:context:schema:os"
+            xmlns:edxlde="urn:oasis:names:tc:emergency:EDXL:DE:1.0"
+            xmlns:xcpd="urn:ihe:iti:xcpd:2009"
+            targetNamespace="urn:gov:hhs:fha:nhinc:common:nhinccommonadapter" elementFormDefault="qualified">
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="../common/NhincCommon.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" schemaLocation="../../ebRS/query.xsd"/>
     <xsd:import namespace="urn:ihe:iti:xds-b:2007" schemaLocation="../../ihe/XDS.b_DocumentRepository.xsd"/>
@@ -11,6 +22,7 @@
     <xsd:import namespace="urn:oasis:names:tc:xacml:2.0:context:schema:os" schemaLocation="../../oasis/xacml/access_control-xacml-2.0-context-schema-os.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:emergency:EDXL:DE:1.0" schemaLocation="../../../schemas/ebRS/edxl-de.xsd"/>
     <xsd:import namespace="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd" schemaLocation="../../../schemas/caqh/CORERule2.2.0.xsd"/>
+    <xsd:import namespace="urn:ihe:iti:xcpd:2009" schemaLocation="../../HL7V3/NE2008/multicacheschemas/XCPD_PLQ.xsd"/>
     <!-- ====================================================================
     Document Query Schemas.
     ==================================================================== -->
@@ -40,7 +52,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayQuerySecureResponse" type="tns:RespondingGateway_CrossGatewayQuerySecureResponseType"/>
-	
+
     <xsd:complexType name="AdapterDocumentQueryDeferredRequestErrorType">
         <xsd:sequence>
             <xsd:element name="assertion" type="nccommon:AssertionType"/>
@@ -922,7 +934,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_SendAlertMessageSecured" type="tns:RespondingGateway_SendAlertMessageSecuredType"/>
-	
+
     <!-- ====================================================================
     X12 Document Submission RealTime / Sync Service Schemas.
     ==================================================================== -->
@@ -933,21 +945,21 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterCOREEnvelopeRealTimeRequest" type="tns:AdapterCOREEnvelopeRealTimeRequestType"/>
-	
+
     <xsd:complexType name="AdapterCOREEnvelopeRealTimeResponseType">
         <xsd:sequence>
             <xsd:element ref="x12:COREEnvelopeRealTimeResponse"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterCOREEnvelopeRealTimeResponse" type="tns:AdapterCOREEnvelopeRealTimeResponseType"/>
-	
+
     <xsd:complexType name="AdapterCOREEnvelopeRealTimeSecuredRequestType">
         <xsd:sequence>
             <xsd:element ref="x12:COREEnvelopeRealTimeRequest"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterCOREEnvelopeRealTimeSecuredRequest" type="tns:AdapterCOREEnvelopeRealTimeSecuredRequestType"/>
-    
+
     <!-- ====================================================================
     X12 Document Submission Batch / Async / Deferred Service Schemas.
     ==================================================================== -->
@@ -958,7 +970,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterBatchSubmissionRequest" type="tns:AdapterBatchSubmissionRequestType"/>
-	
+
     <xsd:complexType name="AdapterBatchSubmissionResponseType">
         <xsd:sequence>
             <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>
@@ -966,29 +978,56 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterBatchSubmissionResponse" type="tns:AdapterBatchSubmissionResponseType"/>
-	
+
     <xsd:complexType name="AdapterBatchSubmissionResponseSecuredType">
         <xsd:sequence>
-            <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>			
+            <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="AdapterBatchSubmissionResponseSecured" type="tns:AdapterBatchSubmissionResponseSecuredType"/>	
-	
+    <xsd:element name="AdapterBatchSubmissionResponseSecured" type="tns:AdapterBatchSubmissionResponseSecuredType"/>
+
     <xsd:complexType name="AdapterBatchSubmissionSecuredRequestType">
         <xsd:sequence>
             <xsd:element ref="x12:COREEnvelopeBatchSubmission"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="AdapterBatchSubmissionSecuredRequest" type="tns:AdapterBatchSubmissionSecuredRequestType"/>  
-    
+    <xsd:element name="AdapterBatchSubmissionSecuredRequest" type="tns:AdapterBatchSubmissionSecuredRequestType"/>
+
     <xsd:complexType name="AdapterBatchSubmissionAckResponseType">
         <xsd:sequence>
             <xsd:element ref="x12:COREEnvelopeBatchSubmissionAckRetrievalResponse"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterBatchSubmissionAckResponse" type="tns:AdapterBatchSubmissionAckResponseType"/>
-    
-    <!-- ====================================================================
-    Continue adding from here for new Schemas
+
+    <!-- ==================================================================
+    Patient Location Query adapter messges
     ==================================================================== -->
+    <xsd:complexType name="AdapterPatientLocationQueryRequestType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryRequest"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterPatientLocationQueryRequestType" type="tns:AdapterPatientLocationQueryRequestType"/>
+    <xsd:complexType name="AdapterPatientLocationQueryResponseType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryResponse"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterPatientLocationQueryResponse" type="tns:AdapterPatientLocationQueryResponseType"/>
+
+    <xsd:complexType name="AdapterPatientLocationQuerySecuredRequestType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryRequest"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterPatientLocationQuerySecuredRequest" type="tns:AdapterPatientLocationQuerySecuredRequestType"/>
+    <xsd:complexType name="AdapterPatientLocationQuerySecuredResponsetType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryResponse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterPatientLocationQuerySecuredResponset" type="tns:AdapterPatientLocationQuerySecuredResponsetType"/>
 </xsd:schema>

@@ -116,6 +116,24 @@
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayProvideAndRegisterDocumentSetRequestResponse" type="tns:RespondingGateway_CrossGatewayProvideAndRegisterDocumentSetRequestResponseType"/>
     <!-- ====================================================================
+    Document Register Schemas.
+    ==================================================================== -->
+    <xsd:complexType name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestRequestType">
+        <xsd:sequence>
+            <xsd:element ref="ihe:RegisterDocumentSetRequest"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestRequest" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetRequestRequestType"/>
+    <xsd:complexType name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestResponseType">
+        <xsd:sequence>
+            <xsd:element ref="rs:RegistryResponse"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="url" type="nccommon:UrlInfoType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestResponse" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetRequestResponseType"/>
+    <!-- ====================================================================
     Audit Log Schemas.
     FindAuditEventsRequestType and FindCommunitiesAndAuditEventsType are
     duplicates intentially. Have the same datatypes for two different methods
@@ -874,6 +892,46 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="Adapter_ProvideAndRegisterDocumentSetRequestErrorSecured" type="tns:Adapter_ProvideAndRegisterDocumentSetRequestErrorSecuredType"/>
+    <!-- ====================================================================
+    Document Data Submission Schemas
+    ==================================================================== -->
+    <xsd:complexType name="Adapter_RegisterDocumentSetRequestType">
+        <xsd:sequence>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="RegisterDocumentSetRequest" type="ihe:RegisterDocumentSetRequestType"/>
+            <xsd:element name="url" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Adapter_RegisterDocumentSetRequest" type="tns:Adapter_RegisterDocumentSetRequestType"/>
+    <xsd:complexType name="Adapter_RegisterDocumentSetSecuredRequestType">
+        <xsd:sequence>
+            <xsd:element name="RegisterDocumentSetRequest" type="ihe:RegisterDocumentSetRequestType"/>
+            <xsd:element name="url" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Adapter_RegisterDocumentSetSecuredRequest" type="tns:Adapter_RegisterDocumentSetSecuredRequestType"/>
+    <xsd:complexType name="AdapterRegistryResponseType">
+        <xsd:sequence>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="RegistryResponse" type="rs:RegistryResponseType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterRegistryResponse" type="tns:AdapterRegistryResponseType"/>
+    <xsd:complexType name="Adapter_RegisterDocumentSetRequestErrorType">
+        <xsd:sequence>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="RegisterDocumentSetRequest" type="ihe:RegisterDocumentSetRequestType"/>
+            <xsd:element name="errorMsg" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Adapter_RegisterDocumentSetRequestError" type="tns:Adapter_RegisterDocumentSetRequestErrorType"/>
+    <xsd:complexType name="Adapter_RegisterDocumentSetRequestErrorSecuredType">
+        <xsd:sequence>
+            <xsd:element name="RegisterDocumentSetRequest" type="ihe:RegisterDocumentSetRequestType"/>
+            <xsd:element name="errorMsg" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Adapter_RegisterDocumentSetRequestErrorSecured" type="tns:Adapter_RegisterDocumentSetRequestErrorSecuredType"/>
     <!-- ====================================================================
     Redaction
     ==================================================================== -->

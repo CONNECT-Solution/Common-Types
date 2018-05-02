@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema 
+<xsd:schema
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:tns="urn:gov:hhs:fha:nhinc:common:nhinccommonentity"
     xmlns:hl7="urn:hl7-org:v3"
@@ -15,9 +15,10 @@
     xmlns:subb2obdoc="urn:gov:hhs:fha:nhinc:common:subscriptionb2overridefordocuments"
     xmlns:ncsub="urn:gov:hhs:fha:nhinc:common:subscription"
     xmlns:edxlde="urn:oasis:names:tc:emergency:EDXL:DE:1.0"
+    xmlns:xcpd="urn:ihe:iti:xcpd:2009"
     targetNamespace="urn:gov:hhs:fha:nhinc:common:nhinccommonentity"
     elementFormDefault="qualified">
-        
+
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="NhincCommon.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:ebxml-regrep:xsd:query:3.0" schemaLocation="../../ebRS/query.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" schemaLocation="../../ebRS/rs.xsd"/>
@@ -30,6 +31,7 @@
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:subscriptionb2overridefordocuments" schemaLocation="../../../schemas/nhinc/common/SubscriptionB2OverrideForDocuments.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:emergency:EDXL:DE:1.0" schemaLocation="../../../schemas/ebRS/edxl-de.xsd"/>
     <xsd:import namespace="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd" schemaLocation="../../../schemas/caqh/CORERule2.2.0.xsd"/>
+    <xsd:import namespace="urn:ihe:iti:xcpd:2009" schemaLocation="../../HL7V3/NE2008/multicacheschemas/XCPD_PLQ.xsd"/>
     <!-- ====================================================================
     Document Query Schemas.
     ==================================================================== -->
@@ -41,7 +43,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayQueryRequest" type="tns:RespondingGateway_CrossGatewayQueryRequestType"/>
-	
+
     <xsd:complexType name="RespondingGateway_CrossGatewayQueryResponseType">
         <xsd:sequence>
             <xsd:element ref="query:AdhocQueryResponse"/>
@@ -50,15 +52,15 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayQueryResponse" type="tns:RespondingGateway_CrossGatewayQueryResponseType"/>
-	
+
     <xsd:complexType name="RespondingGateway_CrossGatewayQueryResponseSecuredType">
         <xsd:sequence>
-            <xsd:element ref="query:AdhocQueryResponse"/>			
+            <xsd:element ref="query:AdhocQueryResponse"/>
             <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="RespondingGateway_CrossGatewayQueryResponseSecured" type="tns:RespondingGateway_CrossGatewayQueryResponseSecuredType"/>	
-	
+    <xsd:element name="RespondingGateway_CrossGatewayQueryResponseSecured" type="tns:RespondingGateway_CrossGatewayQueryResponseSecuredType"/>
+
     <xsd:complexType name="RespondingGateway_CrossGatewayQuerySecuredRequestType">
         <xsd:sequence>
             <xsd:element ref="query:AdhocQueryRequest"/>
@@ -246,9 +248,9 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_ProvideAndRegisterDocumentSetSecuredResponseRequest" type="tns:RespondingGateway_ProvideAndRegisterDocumentSetSecuredResponseRequestType"/>
-	
-	
-	
+
+
+
     <xsd:complexType name="RespondingGateway_SendAlertMessageType">
         <xsd:sequence>
             <xsd:element name="assertion" type="nccommon:AssertionType"/>
@@ -261,7 +263,7 @@
     <xsd:complexType name="RespondingGateway_SendAlertMessageSecuredType">
         <xsd:sequence>
             <xsd:element ref="edxlde:EDXLDistribution"/>
-            <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>		 
+            <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_SendAlertMessageSecured" type="tns:RespondingGateway_SendAlertMessageSecuredType"/>
@@ -304,20 +306,56 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayBatchSubmissionRequest" type="tns:RespondingGateway_CrossGatewayBatchSubmissionRequestType"/>
-    
+
     <xsd:complexType name="RespondingGateway_CrossGatewayBatchSubmissionSecuredRequestType">
         <xsd:sequence>
-            <xsd:element ref="x12:COREEnvelopeBatchSubmission"/>            
+            <xsd:element ref="x12:COREEnvelopeBatchSubmission"/>
             <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayBatchSubmissionRequestSecured" type="tns:RespondingGateway_CrossGatewayBatchSubmissionSecuredRequestType"/>
-    
+
     <xsd:complexType name="RespondingGateway_CrossGatewayBatchSubmissionResponseMessageType">
         <xsd:sequence>
             <xsd:element ref="x12:COREEnvelopeBatchSubmissionResponse"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayBatchSubmissionResponseMessage" type="tns:RespondingGateway_CrossGatewayBatchSubmissionResponseMessageType"/>
-    
+
+    <!-- ==================================================================
+    Patient Location Query Secured and Unsecured entity message
+    ==================================================================== -->
+    <xsd:complexType name="RespondingGateway_PatientLocationQueryRequestType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryRequest"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_PatientLocationQueryRequest" type="tns:RespondingGateway_PatientLocationQueryRequestType"/>
+
+    <xsd:complexType name="RespondingGateway_PatientLocationQueryResponseType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryResponse"/>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_PatientLocationQueryResponse" type="tns:RespondingGateway_PatientLocationQueryResponseType"/>
+
+    <xsd:complexType name="RespondingGateway_PatientLocationQuerySecuredRequestType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryRequest"/>
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_PatientLocationQuerySecuredRequest" type="tns:RespondingGateway_PatientLocationQuerySecuredRequestType"/>
+
+    <xsd:complexType name="RespondingGateway_PatientLocationQueryResponseSecuredType">
+        <xsd:sequence>
+            <xsd:element ref="xcpd:PatientLocationQueryRequest"/>
+            <xsd:element name="NhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_PatientLocationQueryResponseSecured" type="tns:RespondingGateway_PatientLocationQueryResponseSecuredType"/>
 </xsd:schema>

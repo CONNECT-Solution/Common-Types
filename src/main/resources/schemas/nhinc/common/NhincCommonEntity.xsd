@@ -248,9 +248,41 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_ProvideAndRegisterDocumentSetSecuredResponseRequest" type="tns:RespondingGateway_ProvideAndRegisterDocumentSetSecuredResponseRequestType"/>
+    <xsd:complexType name="RespondingGateway_RegisterDocumentSetRequestType">
+        <xsd:sequence>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+            <xsd:element name="RegisterDocumentSetRequest" type="ihe:RegisterDocumentSetRequestType"/>
+            <xsd:element name="url" type="nccommon:UrlInfoType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_RegisterDocumentSetRequest" type="tns:RespondingGateway_RegisterDocumentSetRequestType"/>
 
+    <xsd:complexType name="RespondingGateway_RegisterDocumentSetSecuredRequestType">
+        <xsd:sequence>
+            <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+            <xsd:element name="RegisterDocumentSetRequest" type="ihe:RegisterDocumentSetRequestType"/>
+            <xsd:element name="url" type="nccommon:UrlInfoType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_RegisterDocumentSetSecuredRequest" type="tns:RespondingGateway_RegisterDocumentSetSecuredRequestType"/>
 
+    <xsd:complexType name="RespondingGateway_RegisterDocumentSetResponseRequestType">
+        <xsd:sequence>
+            <xsd:element name="assertion" type="nccommon:AssertionType"/>
+            <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+            <xsd:element name="RegistryResponse" type="rs:RegistryResponseType"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_RegisterDocumentSetResponseRequest" type="tns:RespondingGateway_RegisterDocumentSetResponseRequestType"/>
 
+    <xsd:complexType name="RespondingGateway_RegisterDocumentSetSecuredResponseRequestType">
+        <xsd:sequence>
+            <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" minOccurs="0"/>
+            <xsd:element name="RegistryResponse" type="rs:RegistryResponseType"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RespondingGateway_RegisterDocumentSetSecuredResponseRequest" type="tns:RespondingGateway_RegisterDocumentSetSecuredResponseRequestType"/>
     <xsd:complexType name="RespondingGateway_SendAlertMessageType">
         <xsd:sequence>
             <xsd:element name="assertion" type="nccommon:AssertionType"/>

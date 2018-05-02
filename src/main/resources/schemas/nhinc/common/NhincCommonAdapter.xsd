@@ -910,13 +910,6 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="Adapter_RegisterDocumentSetSecuredRequest" type="tns:Adapter_RegisterDocumentSetSecuredRequestType"/>
-    <xsd:complexType name="AdapterRegistryResponseType">
-        <xsd:sequence>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-            <xsd:element name="RegistryResponse" type="rs:RegistryResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="AdapterRegistryResponse" type="tns:AdapterRegistryResponseType"/>
     <xsd:complexType name="Adapter_RegisterDocumentSetRequestErrorType">
         <xsd:sequence>
             <xsd:element name="assertion" type="nccommon:AssertionType"/>

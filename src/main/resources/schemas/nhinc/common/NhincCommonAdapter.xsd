@@ -118,21 +118,21 @@
     <!-- ====================================================================
     Document Register Schemas.
     ==================================================================== -->
-    <xsd:complexType name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestRequestType">
+    <xsd:complexType name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestType">
         <xsd:sequence>
             <xsd:element ref="ihe:RegisterDocumentSetRequest"/>
             <xsd:element name="assertion" type="nccommon:AssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestRequest" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetRequestRequestType"/>
-    <xsd:complexType name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestResponseType">
+    <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetRequest" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetRequestType"/>
+    <xsd:complexType name="RespondingGateway_CrossGatewayRegisterDocumentSetResponseType">
         <xsd:sequence>
             <xsd:element ref="rs:RegistryResponse"/>
             <xsd:element name="assertion" type="nccommon:AssertionType"/>
             <xsd:element name="url" type="nccommon:UrlInfoType" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetRequestResponse" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetRequestResponseType"/>
+    <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetResponse" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetResponseType"/>
     <!-- ====================================================================
     Audit Log Schemas.
     FindAuditEventsRequestType and FindCommunitiesAndAuditEventsType are

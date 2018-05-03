@@ -125,14 +125,6 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetRequest" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetRequestType"/>
-    <xsd:complexType name="RespondingGateway_CrossGatewayRegisterDocumentSetResponseType">
-        <xsd:sequence>
-            <xsd:element ref="rs:RegistryResponse"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-            <xsd:element name="url" type="nccommon:UrlInfoType" minOccurs="0"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetResponse" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetResponseType"/>
     <!-- ====================================================================
     Audit Log Schemas.
     FindAuditEventsRequestType and FindCommunitiesAndAuditEventsType are

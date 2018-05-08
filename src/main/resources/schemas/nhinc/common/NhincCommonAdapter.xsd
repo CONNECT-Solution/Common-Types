@@ -1052,11 +1052,10 @@
             <xsd:element name="assertion" type="nccommon:AssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="AdapterPatientLocationQueryRequestType" type="tns:AdapterPatientLocationQueryRequestType"/>
+    <xsd:element name="AdapterPatientLocationQueryRequest" type="tns:AdapterPatientLocationQueryRequestType"/>
     <xsd:complexType name="AdapterPatientLocationQueryResponseType">
         <xsd:sequence>
             <xsd:element ref="xcpd:PatientLocationQueryResponse"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterPatientLocationQueryResponse" type="tns:AdapterPatientLocationQueryResponseType"/>
@@ -1067,10 +1066,10 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterPatientLocationQuerySecuredRequest" type="tns:AdapterPatientLocationQuerySecuredRequestType"/>
-    <xsd:complexType name="AdapterPatientLocationQuerySecuredResponsetType">
+    <xsd:complexType name="AdapterPatientLocationQuerySecuredResponseType">
         <xsd:sequence>
             <xsd:element ref="xcpd:PatientLocationQueryResponse"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="AdapterPatientLocationQuerySecuredResponset" type="tns:AdapterPatientLocationQuerySecuredResponsetType"/>
+    <xsd:element name="AdapterPatientLocationQuerySecuredResponse" type="tns:AdapterPatientLocationQuerySecuredResponseType"/>
 </xsd:schema>

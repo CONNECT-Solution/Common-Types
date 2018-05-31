@@ -264,6 +264,41 @@
 	</xsd:complexType>
 	<!-- end XDR request -->
 	
+		<!-- begin XDS request -->
+	<xsd:complexType name="XDSMessageType">
+		<xsd:sequence>
+			<xsd:element name="assertion" type="nccommon:AssertionType"/>
+			<xsd:element name="RegisterDocumentSetRequest" type="ihe:RegisterDocumentSetRequestType"/>			
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XDSEventType">
+		<xsd:sequence>
+			<xsd:element name="message" type="tns:XDSMessageType"/>
+			<xsd:element ref="tns:direction"/>
+			<xsd:element ref="tns:interface"/>
+			<xsd:element name="sendingHomeCommunity" type="nccommon:HomeCommunityType"/>
+			<xsd:element name="receivingHomeCommunity" type="nccommon:HomeCommunityType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end XDS request -->
+	<!-- begin XDS Response (Async) -->
+	<xsd:complexType name="XDSResponseMessageType">
+		<xsd:sequence>
+			<xsd:element name="assertion" type="nccommon:AssertionType"/>
+			<xsd:element name="RegistryResponse" type="rs:RegistryResponseType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="XDSResponseEventType">
+		<xsd:sequence>
+			<xsd:element name="message" type="tns:XDSResponseMessageType"/>
+			<xsd:element ref="tns:direction"/>
+			<xsd:element ref="tns:interface"/>
+			<xsd:element name="sendingHomeCommunity" type="nccommon:HomeCommunityType"/>
+			<xsd:element name="receivingHomeCommunity" type="nccommon:HomeCommunityType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- end XDSrequest -->
+	
 </xsd:schema>
 
 

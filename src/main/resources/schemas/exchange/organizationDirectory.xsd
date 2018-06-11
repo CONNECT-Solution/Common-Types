@@ -8,8 +8,10 @@
     <xsd:sequence>
       <xsd:element name="name" type="xsd:string"/>
       <xsd:element name="hcid" type="xsd:string"/>
+      <xsd:element name="type" type="xsd:string" minOccurs="0"/>
       <!-- Organization status for example, active -->
-      <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="contact" type="tns:contactType" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="address" type="tns:addressType" minOccurs="0" maxOccurs="unbounded"/>
         <!-- partOf holds the HCID of the organization of which this organization forms a part.

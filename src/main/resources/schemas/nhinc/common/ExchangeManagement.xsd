@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:tns="urn:gov:hhs:fha:nhinc:common:exchangemanagement"
-            xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
-            xmlns:addr="http://www.w3.org/2005/08/addressing"
             xmlns:exch="urn:gov:hhs:fha:nhinc:exchange"
             xmlns:org="urn:gov:hhs:fha:nhinc:exchange:directory"
             xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon"
@@ -10,15 +8,6 @@
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="../common/NhincCommon.xsd" />
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange" schemaLocation="../../exchange/exchange.xsd"/>
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange:directory" schemaLocation="../../exchange/organizationDirectory.xsd"/>
-
-    <xsd:complexType name="ConfigAssertionType">
-        <xsd:sequence>
-            <xsd:element name="userInfo" type="nccommon:UserType" />
-            <xsd:element name="configInstance" type="xsd:string" />
-            <xsd:element name="authMethod" type="xsd:string" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ConfigAssertion" type="tns:ConfigAssertionType" />
 
     <xsd:complexType name="SimpleExchangeManagementResponseMessageType">
         <xsd:sequence>
@@ -30,23 +19,23 @@
 
     <xsd:complexType name="SaveExchangeRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="exchange" type="exch:exchangeType" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="exchange" type="exch:exchangeType"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="SaveExchangeRequestMessage" type="tns:SaveExchangeRequestMessageType" />
 
     <xsd:complexType name="DeleteExchangeRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="exchangeName" type="xsd:string" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="exchangeName" type="xsd:string"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="DeleteExchangeRequestMessage" type="tns:DeleteExchangeRequestMessageType" />
 
     <xsd:complexType name="ListExchangesRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListExchangesRequestMessage" type="tns:ListExchangesRequestMessageType" />
@@ -60,8 +49,8 @@
 
     <xsd:complexType name="ListOrganizationsRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="exchangeName" type="xsd:string" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="exchangeName" type="xsd:string"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListOrganizationsRequestMessage" type="tns:ListOrganizationsRequestMessageType" />
@@ -75,9 +64,9 @@
 	
     <xsd:complexType name="ListEndpointsRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="exchangeName" type="xsd:string" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="hcid" type="xsd:string" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="exchangeName" type="xsd:string"/>
+            <xsd:element name="hcid" type="xsd:string"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListEndpointsRequestMessage" type="tns:ListEndpointsRequestMessageType" />
@@ -91,7 +80,7 @@
 	
     <xsd:complexType name="GetExchangeInfoViewRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="GetExchangeInfoViewRequestMessage" type="tns:GetExchangeInfoViewRequestMessageType" />
@@ -103,15 +92,15 @@
     </xsd:complexType>
     <xsd:element name="GetExchangeInfoViewResponseMessageType" type="tns:GetExchangeInfoViewResponseMessageType"/>
 
-    <xsd:complexType name="SaveGeneralSettingRequestMessageType" >
+    <xsd:complexType name="SaveExchangeConfigRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="refreshInterval" type="xsd:long" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="maxNumberOfBackups" type="xsd:integer" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="defaultExchange" type="xsd:string" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="refreshInterval" type="xsd:long"/>
+            <xsd:element name="maxNumberOfBackups" type="xsd:integer"/>
+            <xsd:element name="defaultExchange" type="xsd:string"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="SaveGeneralSettingRequestMessage" type="tns:SaveGeneralSettingRequestMessageType" />
+    <xsd:element name="SaveExchangeConfigRequestMessage" type="tns:SaveExchangeConfigRequestMessageType" />
 	
     <xsd:complexType name="ExchangeDownloadStepStatusType">
         <xsd:sequence>
@@ -123,8 +112,8 @@
 
     <xsd:complexType name="ExchangeDownloadStatusType">
         <xsd:sequence>
-            <xsd:element name="success" type="xsd:boolean" minOccurs="0"/>
-            <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="success" type="xsd:boolean"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
             <xsd:element name="stepStatus" type="tns:ExchangeDownloadStepStatusType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -132,7 +121,7 @@
 	
     <xsd:complexType name="RefreshExchangeManagerRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RefreshExchangeManagerRequestMessage" type="tns:RefreshExchangeManagerRequestMessageType" />
@@ -143,12 +132,5 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RefreshExchangeManagerResponseMessage" type="tns:RefreshExchangeManagerResponseMessageType"/>
-	
-    <xsd:complexType name="ToggleExchangeIsEnabledRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="exchangeName" type="xsd:string" minOccurs="1" maxOccurs="1" />
-            <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ToggleExchangeIsEnabledRequestMessage" type="tns:ToggleExchangeIsEnabledRequestMessageType" />
+
 </xsd:schema>

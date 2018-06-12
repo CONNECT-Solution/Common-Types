@@ -318,6 +318,14 @@
             <xsd:element name="address" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
+    <xsd:complexType name="ConfigAssertionType">
+        <xsd:sequence>
+            <xsd:element name="userInfo" type="tns:UserType" />
+            <xsd:element name="configInstance" type="xsd:string" />
+            <xsd:element name="authMethod" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ConfigAssertion" type="tns:ConfigAssertionType" />
 </xsd:schema>
 
 

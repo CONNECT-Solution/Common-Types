@@ -90,7 +90,7 @@
             <xsd:element name="exchangeInfo" type="exch:exchangeInfoType" minOccurs="0" />
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="GetExchangeInfoViewResponseMessageType" type="tns:GetExchangeInfoViewResponseMessageType"/>
+    <xsd:element name="GetExchangeInfoViewResponseMessage" type="tns:GetExchangeInfoViewResponseMessageType"/>
 
     <xsd:complexType name="SaveExchangeConfigRequestMessageType" >
         <xsd:sequence>

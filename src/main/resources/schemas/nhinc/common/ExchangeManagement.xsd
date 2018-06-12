@@ -20,6 +20,14 @@
     </xsd:complexType>
     <xsd:element name="ConfigAssertion" type="tns:ConfigAssertionType" />
 
+    <xsd:complexType name="SimpleExchangeManagementResponseMessageType">
+        <xsd:sequence>
+            <xsd:element name="status" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SimpleExchangeManagementResponseMessage" type="tns:SimpleExchangeManagementResponseMessageType"/>
+
     <xsd:complexType name="SaveExchangeRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="exchange" type="exch:exchangeType" minOccurs="1" maxOccurs="1" />

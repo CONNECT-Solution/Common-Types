@@ -138,7 +138,7 @@
 	
     <xsd:complexType name="ToggleExchangeIsEnabledRequestMessageType" >
         <xsd:sequence>
-            <xsd:element name="exchangeName" type="tns:string" minOccurs="1" maxOccurs="1" />
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="1" maxOccurs="1" />
             <xsd:element name="configAssertion" type="tns:ConfigAssertionType" minOccurs="1" maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>

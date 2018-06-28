@@ -23,6 +23,7 @@
             <xsd:element name="url" type="xsd:string" minOccurs="0"/>
             <xsd:element name="hcid" type="xsd:string" minOccurs="0"/>
             <xsd:element name="aaidList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="organizationList" type="org:organizationType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="SimpleExchangeManagementResponseMessage" type="tns:SimpleExchangeManagementResponseMessageType"/>
@@ -143,13 +144,6 @@
     </xsd:complexType>
     <xsd:element name="HCIDServiceNameRequestMessage" type="tns:HCIDServiceNameRequestMessageType" />
 
-    <xsd:complexType name="GetOrganizationByHCIDResponseMessageType" >
-        <xsd:sequence>
-            <xsd:element name="organization" type="org:organizationType" minOccurs="0"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="GetOrganizationByHCIDResponseMessage" type="tns:GetOrganizationByHCIDResponseMessageType" />
-
     <xsd:complexType name="ListOrganizationsByHCIDListRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
@@ -157,20 +151,6 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByHCIDListRequestMessage" type="tns:ListOrganizationsByHCIDListRequestMessageType" />
-
-    <xsd:complexType name="OrganizationListResponseMessageType" >
-        <xsd:sequence>
-            <xsd:element name="organizationList" type="org:organizationType" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="OrganizationListResponseMessage" type="tns:OrganizationListResponseMessageType" />
-
-    <xsd:complexType name="OrganizationResponseMessageType" >
-        <xsd:sequence>
-            <xsd:element name="organization" type="org:organizationType" minOccurs="0"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="OrganizationResponseMessage" type="tns:OrganizationResponseMessageType" />
 
     <xsd:complexType name="GetEndpointUrlByNhinTargetRequestMessageType" >
         <xsd:complexContent>
@@ -214,6 +194,7 @@
 
     <xsd:complexType name="GetHomeCommunityIdByAssigningAuthorityIdRequestMessageType" >
         <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="aaId" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>

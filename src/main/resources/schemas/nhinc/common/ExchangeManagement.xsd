@@ -9,6 +9,12 @@
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange" schemaLocation="../../exchange/exchange.xsd"/>
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange:directory" schemaLocation="../../exchange/organizationDirectory.xsd"/>
 
+    <xsd:complexType name="BasicRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
     <xsd:complexType name="SimpleExchangeManagementResponseMessageType">
         <xsd:sequence>
             <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
@@ -20,34 +26,30 @@
     </xsd:complexType>
     <xsd:element name="SimpleExchangeManagementResponseMessage" type="tns:SimpleExchangeManagementResponseMessageType"/>
 
-    <xsd:complexType name="SaveExchangeRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="exchange" type="exch:exchangeType"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SaveExchangeRequestMessage" type="tns:SaveExchangeRequestMessageType" />
-
-    <xsd:complexType name="ExchangeNameRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="exchangeName" type="xsd:string"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-
-    <xsd:complexType name="DeleteExchangeRequestMessageType" >
+    <xsd:complexType name="ExchangeRequestMessageType" >
         <xsd:complexContent>
-            <xsd:extension base="tns:ExchangeNameRequestMessageType" />
+            <xsd:extension base="tns:BasicRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="exchange" type="exch:exchangeType"/>
+                </xsd:sequence>
+            </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:element name="DeleteExchangeRequestMessage" type="tns:DeleteExchangeRequestMessageType" />
+    <xsd:element name="SaveExchangeRequestMessage" type="tns:ExchangeRequestMessageType" />
 
-    <xsd:complexType name="ListExchangesRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
+    <xsd:complexType name="ExchangeNameRequestMessageType" >
+        <xsd:complexContent>
+            <xsd:extension base="tns:BasicRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="exchangeName" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
     </xsd:complexType>
-    <xsd:element name="ListExchangesRequestMessage" type="tns:ListExchangesRequestMessageType" />
+
+    <xsd:element name="DeleteExchangeRequestMessage" type="tns:ExchangeNameRequestMessageType" />
+
+    <xsd:element name="ListExchangesRequestMessage" type="tns:BasicRequestMessageType" />
     
     <xsd:complexType name="ListExchangesResponseMessageType">
         <xsd:sequence>
@@ -56,13 +58,16 @@
     </xsd:complexType>
     <xsd:element name="ListExchangesResponseMessage" type="tns:ListExchangesResponseMessageType"/>
 
-    <xsd:complexType name="ListOrganizationsRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
+    <xsd:complexType name="ExchangeNameOptionalRequestMessageType" >
+        <xsd:complexContent>
+            <xsd:extension base="tns:BasicRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
     </xsd:complexType>
-    <xsd:element name="ListOrganizationsRequestMessage" type="tns:ListOrganizationsRequestMessageType" />
+    <xsd:element name="ListOrganizationsRequestMessage" type="tns:ExchangeNameOptionalRequestMessageType" />
 
     <xsd:complexType name="ListOrganizationsResponseMessageType">
         <xsd:sequence>
@@ -89,12 +94,7 @@
     </xsd:complexType>
     <xsd:element name="ListEndpointsResponseMessage" type="tns:ListEndpointsResponseMessageType"/>
 
-    <xsd:complexType name="GetExchangeInfoViewRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="GetExchangeInfoViewRequestMessage" type="tns:GetExchangeInfoViewRequestMessageType" />
+    <xsd:element name="GetExchangeInfoViewRequestMessage" type="tns:BasicRequestMessageType" />
 
     <xsd:complexType name="GetExchangeInfoViewResponseMessageType">
         <xsd:sequence>
@@ -104,12 +104,15 @@
     <xsd:element name="GetExchangeInfoViewResponseMessage" type="tns:GetExchangeInfoViewResponseMessageType"/>
 
     <xsd:complexType name="SaveExchangeConfigRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="refreshInterval" type="xsd:long"/>
-            <xsd:element name="maxNumberOfBackups" type="xsd:integer"/>
-            <xsd:element name="defaultExchange" type="xsd:string"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
+        <xsd:complexContent>
+            <xsd:extension base="tns:BasicRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="refreshInterval" type="xsd:long"/>
+                    <xsd:element name="maxNumberOfBackups" type="xsd:integer"/>
+                    <xsd:element name="defaultExchange" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
     </xsd:complexType>
     <xsd:element name="SaveExchangeConfigRequestMessage" type="tns:SaveExchangeConfigRequestMessageType" />
 
@@ -130,12 +133,7 @@
     </xsd:complexType>
     <xsd:element name="ExchangeDownloadStatus" type="tns:ExchangeDownloadStatusType" />
 
-    <xsd:complexType name="RefreshExchangeManagerRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="RefreshExchangeManagerRequestMessage" type="tns:RefreshExchangeManagerRequestMessageType" />
+    <xsd:element name="RefreshExchangeManagerRequestMessage" type="tns:BasicRequestMessageType" />
 
     <xsd:complexType name="RefreshExchangeManagerResponseMessageType">
         <xsd:sequence>
@@ -145,35 +143,36 @@
     <xsd:element name="RefreshExchangeManagerResponseMessage" type="tns:RefreshExchangeManagerResponseMessageType"/>
 
     <xsd:complexType name="HCIDRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="hcid" type="xsd:string"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
+        <xsd:complexContent>
+            <xsd:extension base="tns:BasicRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="hcid" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
     </xsd:complexType>
 
     <xsd:complexType name="ServiceNameRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="serviceName" type="xsd:string"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
+        <xsd:complexContent>
+            <xsd:extension base="tns:BasicRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="serviceName" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
     </xsd:complexType>
 
     <xsd:complexType name="HCIDServiceNameRequestMessageType" >
         <xsd:complexContent>
             <xsd:extension base="tns:HCIDRequestMessageType">
                 <xsd:sequence>
-                <xsd:element name="serviceName" type="xsd:string"/>
+                    <xsd:element name="serviceName" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
 
-    <xsd:complexType name="GetOrganizationByHCIDRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:HCIDRequestMessageType" />
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="GetOrganizationByHCIDRequestMessage" type="tns:GetOrganizationByHCIDRequestMessageType" />
+    <xsd:element name="GetOrganizationByHCIDRequestMessage" type="tns:HCIDRequestMessageType" />
 
     <xsd:complexType name="GetOrganizationByHCIDResponseMessageType" >
         <xsd:sequence>
@@ -183,10 +182,13 @@
     <xsd:element name="GetOrganizationByHCIDResponseMessage" type="tns:GetOrganizationByHCIDResponseMessageType" />
 
     <xsd:complexType name="ListOrganizationsByHCIDListRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="hcidList" type="xsd:string" maxOccurs="unbounded"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
+        <xsd:complexContent>
+            <xsd:extension base="tns:BasicRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="hcidList" type="xsd:string" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByHCIDListRequestMessage" type="tns:ListOrganizationsByHCIDListRequestMessageType" />
 
@@ -197,12 +199,7 @@
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByHCIDListResponseMessage" type="tns:ListOrganizationsByHCIDListResponseMessageType" />
 
-    <xsd:complexType name="GetOrganizationByHCIDServiceNameRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:HCIDServiceNameRequestMessageType" />
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="GetOrganizationByHCIDServiceNameRequestMessage" type="tns:GetOrganizationByHCIDServiceNameRequestMessageType" />
+    <xsd:element name="GetOrganizationByHCIDServiceNameRequestMessage" type="tns:HCIDServiceNameRequestMessageType" />
 
     <xsd:complexType name="GetOrganizationByHCIDServiceNameResponseMessageType" >
         <xsd:sequence>
@@ -211,12 +208,7 @@
     </xsd:complexType>
     <xsd:element name="GetOrganizationByHCIDServiceNameResponseMessage" type="tns:GetOrganizationByHCIDServiceNameResponseMessageType" />
 
-    <xsd:complexType name="ListOrganizationsByHCIDServiceNameRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:HCIDServiceNameRequestMessageType" />
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="ListOrganizationsByHCIDServiceNameRequestMessage" type="tns:ListOrganizationsByHCIDServiceNameRequestMessageType" />
+    <xsd:element name="ListOrganizationsByHCIDServiceNameRequestMessage" type="tns:HCIDServiceNameRequestMessageType" />
 
     <xsd:complexType name="ListOrganizationsByHCIDServiceNameResponseMessageType" >
         <xsd:sequence>
@@ -225,12 +217,7 @@
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByHCIDServiceNameResponseMessage" type="tns:ListOrganizationsByHCIDServiceNameResponseMessageType" />
 
-    <xsd:complexType name="ListOrganizationsByServiceNameRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:ServiceNameRequestMessageType" />
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="ListOrganizationsByServiceNameRequestMessage" type="tns:ListOrganizationsByServiceNameRequestMessageType" />
+    <xsd:element name="ListOrganizationsByServiceNameRequestMessage" type="tns:ServiceNameRequestMessageType" />
 
     <xsd:complexType name="ListOrganizationsByServiceNameResponseMessageType" >
         <xsd:sequence>
@@ -239,19 +226,9 @@
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByServiceNameResponseMessage" type="tns:ListOrganizationsByServiceNameResponseMessageType" />
 
-    <xsd:complexType name="GetEndpointUrlByServiceNameRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:HCIDServiceNameRequestMessageType" />
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="GetEndpointUrlByServiceNameRequestMessage" type="tns:GetEndpointUrlByServiceNameRequestMessageType" />
+    <xsd:element name="GetEndpointUrlByServiceNameRequestMessage" type="tns:HCIDServiceNameRequestMessageType" />
 
-    <xsd:complexType name="GetEndpointUrlInternalByServiceNameRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:ServiceNameRequestMessageType" />
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="GetEndpointUrlInternalByServiceNameRequestMessage" type="tns:GetEndpointUrlInternalByServiceNameRequestMessageType" />
+    <xsd:element name="GetEndpointUrlInternalByServiceNameRequestMessage" type="tns:ServiceNameRequestMessageType" />
 
     <xsd:complexType name="GetEndpointUrlByNhinTargetRequestMessageType" >
         <xsd:complexContent>
@@ -293,12 +270,7 @@
     </xsd:complexType>
     <xsd:element name="GetEndpointUrlByAdapterRequestMessage" type="tns:GetEndpointUrlByAdapterRequestMessageType" />
 
-    <xsd:complexType name="ListAssigningAuthoritiesByHCIDRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:HCIDRequestMessageType" />
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="ListAssigningAuthoritiesByHCIDRequestMessage" type="tns:ListAssigningAuthoritiesByHCIDRequestMessageType" />
+    <xsd:element name="ListAssigningAuthoritiesByHCIDRequestMessage" type="tns:HCIDRequestMessageType" />
 
     <xsd:complexType name="GetHomeCommunityIdByAssigningAuthorityIdRequestMessageType" >
         <xsd:sequence>

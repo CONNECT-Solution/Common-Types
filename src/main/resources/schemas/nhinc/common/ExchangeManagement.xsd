@@ -51,13 +51,6 @@
     </xsd:complexType>
     <xsd:element name="ListExchangesResponseMessage" type="tns:ListExchangesResponseMessageType"/>
 
-    <xsd:complexType name="ListOrganizationsResponseMessageType">
-        <xsd:sequence>
-            <xsd:element name="organizationsList" type="org:organizationType" minOccurs="0" maxOccurs="unbounded" />
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ListOrganizationsResponseMessage" type="tns:ListOrganizationsResponseMessageType"/>
-    
     <xsd:complexType name="ListEndpointsRequestMessageType" >
         <xsd:complexContent>
             <xsd:extension base="tns:ExchangeNameRequestMessageType">

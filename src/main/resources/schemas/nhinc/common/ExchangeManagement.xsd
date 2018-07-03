@@ -9,13 +9,6 @@
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange" schemaLocation="../../exchange/exchange.xsd"/>
     <xsd:import namespace="urn:gov:hhs:fha:nhinc:exchange:directory" schemaLocation="../../exchange/organizationDirectory.xsd"/>
 
-    <xsd:complexType name="BasicRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="BasicRequestMessage" type="tns:BasicRequestMessageType"/>
-
     <xsd:complexType name="SimpleExchangeManagementResponseMessageType">
         <xsd:sequence>
             <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
@@ -28,21 +21,13 @@
     </xsd:complexType>
     <xsd:element name="SimpleExchangeManagementResponseMessage" type="tns:SimpleExchangeManagementResponseMessageType"/>
 
-    <xsd:complexType name="ExchangeRequestMessageType" >
+    <xsd:complexType name="SaveExchangeRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="exchange" type="exch:exchangeType"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="ExchangeRequestMessage" type="tns:ExchangeRequestMessageType" />
-
-    <xsd:complexType name="ExchangeNameRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ExchangeNameRequestMessage" type="tns:ExchangeNameRequestMessageType" />
+    <xsd:element name="SaveExchangeRequestMessage" type="tns:SaveExchangeRequestMessageType" />
 
     <xsd:complexType name="ListExchangesResponseMessageType">
         <xsd:sequence>
@@ -52,13 +37,11 @@
     <xsd:element name="ListExchangesResponseMessage" type="tns:ListExchangesResponseMessageType"/>
 
     <xsd:complexType name="ListEndpointsRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:ExchangeNameRequestMessageType">
-                <xsd:sequence>
-                    <xsd:element name="hcid" type="xsd:string"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="exchangeName" type="xsd:string"/>
+            <xsd:element name="hcid" type="xsd:string"/>
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListEndpointsRequestMessage" type="tns:ListEndpointsRequestMessageType" />
 
@@ -110,33 +93,6 @@
     </xsd:complexType>
     <xsd:element name="RefreshExchangeManagerResponseMessage" type="tns:RefreshExchangeManagerResponseMessageType"/>
 
-    <xsd:complexType name="HCIDRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-            <xsd:element name="hcid" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="HCIDRequestMessage" type="tns:HCIDRequestMessageType" />
-
-    <xsd:complexType name="ServiceNameRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-            <xsd:element name="serviceName" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ServiceNameRequestMessage" type="tns:ServiceNameRequestMessageType" />
-
-    <xsd:complexType name="HCIDServiceNameRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:HCIDRequestMessageType">
-                <xsd:sequence>
-                    <xsd:element name="serviceName" type="xsd:string"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="HCIDServiceNameRequestMessage" type="tns:HCIDServiceNameRequestMessageType" />
-
     <xsd:complexType name="ListOrganizationsByHCIDListRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
@@ -146,24 +102,20 @@
     <xsd:element name="ListOrganizationsByHCIDListRequestMessage" type="tns:ListOrganizationsByHCIDListRequestMessageType" />
 
     <xsd:complexType name="GetEndpointUrlByNhinTargetRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:ServiceNameRequestMessageType">
-                <xsd:sequence>
-                    <xsd:element name="nhinTargetSystem" type="nccommon:NhinTargetSystemType" />
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+            <xsd:element name="nhinTargetSystem" type="nccommon:NhinTargetSystemType" />
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="GetEndpointUrlByNhinTargetRequestMessage" type="tns:GetEndpointUrlByNhinTargetRequestMessageType" />
 
     <xsd:complexType name="ListEndpointUrlInfoByNhinTargetCommunitiesRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:ServiceNameRequestMessageType">
-                <xsd:sequence>
-                    <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" />
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+            <xsd:element name="nhinTargetCommunities" type="nccommon:NhinTargetCommunitiesType" />
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListEndpointUrlInfoByNhinTargetCommunitiesRequestMessage" type="tns:ListEndpointUrlInfoByNhinTargetCommunitiesRequestMessageType" />
 
@@ -175,13 +127,11 @@
     <xsd:element name="ListEndpointUrlInfoByNhinTargetCommunitiesResponseMessage" type="tns:ListEndpointUrlInfoByNhinTargetCommunitiesResponseMessageType" />
 
     <xsd:complexType name="GetEndpointUrlByAdapterRequestMessageType" >
-        <xsd:complexContent>
-            <xsd:extension base="tns:ServiceNameRequestMessageType">
-                <xsd:sequence>
-                    <xsd:element name="adapterLevel" type="xsd:string" />
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+            <xsd:element name="adapterLevel" type="xsd:string" />
+        </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="GetEndpointUrlByAdapterRequestMessage" type="tns:GetEndpointUrlByAdapterRequestMessageType" />
 
@@ -193,4 +143,98 @@
     </xsd:complexType>
     <xsd:element name="GetHomeCommunityIdByAssigningAuthorityIdRequestMessage" type="tns:GetHomeCommunityIdByAssigningAuthorityIdRequestMessageType" />
 
+    <xsd:complexType name="ListExchangesRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListExchangesRequestMessage" type="tns:ListExchangesRequestMessageType"/>
+
+    <xsd:complexType name="GetExchangeInfoViewRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetExchangeInfoViewRequestMessage" type="tns:GetExchangeInfoViewRequestMessageType"/>
+
+    <xsd:complexType name="RefreshExchangeManagerRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RefreshExchangeManagerRequestMessage" type="tns:RefreshExchangeManagerRequestMessageType"/>
+
+    <xsd:complexType name="DeleteExchangeRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="exchangeName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DeleteExchangeRequestMessage" type="tns:DeleteExchangeRequestMessageType" />
+
+    <xsd:complexType name="ListOrganizationsRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListOrganizationsRequestMessage" type="tns:ListOrganizationsRequestMessageType" />
+
+    <xsd:complexType name="GetOrganizationByHCIDRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="hcid" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetOrganizationByHCIDRequestMessage" type="tns:GetOrganizationByHCIDRequestMessageType" />
+
+    <xsd:complexType name="GetAssigningAuthoritiesByHCIDRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="hcid" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetAssigningAuthoritiesByHCIDRequestMessage" type="tns:GetAssigningAuthoritiesByHCIDRequestMessageType" />
+
+    <xsd:complexType name="GetOrganizationByHCIDServiceNameRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="hcid" type="xsd:string"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetOrganizationByHCIDServiceNameRequestMessage" type="tns:GetOrganizationByHCIDServiceNameRequestMessageType" />
+
+    <xsd:complexType name="ListOrganizationsByHCIDServiceNameRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="hcid" type="xsd:string"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListOrganizationsByHCIDServiceNameRequestMessage" type="tns:ListOrganizationsByHCIDServiceNameRequestMessageType" />
+
+    <xsd:complexType name="GetEndpointUrlByServiceNameRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEndpointUrlByServiceNameRequestMessage" type="tns:GetEndpointUrlByServiceNameRequestMessageType" />
+
+    <xsd:complexType name="GetEndpointUrlInternalByServiceNameRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="GetEndpointUrlInternalByServiceNameRequestMessage" type="tns:GetEndpointUrlInternalByServiceNameRequestMessageType" />
+
+    <xsd:complexType name="ListOrganizationsByServiceNameRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="serviceName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ListOrganizationsByServiceNameRequestMessage" type="tns:ListOrganizationsByServiceNameRequestMessageType" />
 </xsd:schema>

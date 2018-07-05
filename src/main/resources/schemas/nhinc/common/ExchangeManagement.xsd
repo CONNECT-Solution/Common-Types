@@ -208,19 +208,21 @@
     <xsd:complexType name="ListOrganizationsByHCIDServiceNameRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-            <xsd:element name="hcid" type="xsd:string"/>
+            <xsd:element name="hcidList" type="xsd:string" maxOccurs="unbounded"/>
             <xsd:element name="serviceName" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByHCIDServiceNameRequestMessage" type="tns:ListOrganizationsByHCIDServiceNameRequestMessageType" />
 
-    <xsd:complexType name="GetEndpointUrlByServiceNameRequestMessageType" >
+    <xsd:complexType name="GetEndpointUrlDefaultByServiceNameRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="serviceName" type="xsd:string"/>
+            <xsd:element name="hcid" type="xsd:string"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="GetEndpointUrlByServiceNameRequestMessage" type="tns:GetEndpointUrlByServiceNameRequestMessageType" />
+    <xsd:element name="GetEndpointUrlDefaultByServiceNameRequestMessage" type="tns:GetEndpointUrlDefaultByServiceNameRequestMessageType" />
 
     <xsd:complexType name="GetEndpointUrlInternalByServiceNameRequestMessageType" >
         <xsd:sequence>

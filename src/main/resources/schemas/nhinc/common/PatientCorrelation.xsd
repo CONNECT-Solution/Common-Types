@@ -45,5 +45,12 @@
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:element name="AddPatientCorrelationPLQRequest" type="tns:AddPatientCorrelationPLQRequestType"/>
+    <xsd:complexType name="SimplePatientCorrelationResponseType">
+        <xsd:sequence>
+            <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SimplePatientCorrelationResponse" type="tns:SimplePatientCorrelationResponseType"/>
 	
 </xsd:schema>

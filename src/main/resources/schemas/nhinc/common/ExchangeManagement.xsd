@@ -16,7 +16,7 @@
             <xsd:element name="url" type="xsd:string" minOccurs="0"/>
             <xsd:element name="hcid" type="xsd:string" minOccurs="0"/>
             <xsd:element name="aaidList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="organizationList" type="org:organizationType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="organizationList" type="exch:organizationListType" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="SimpleExchangeManagementResponseMessage" type="tns:SimpleExchangeManagementResponseMessageType"/>
@@ -97,6 +97,7 @@
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="hcidList" type="xsd:string" maxOccurs="unbounded"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByHCIDListRequestMessage" type="tns:ListOrganizationsByHCIDListRequestMessageType" />
@@ -184,6 +185,7 @@
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="hcid" type="xsd:string"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="GetOrganizationByHCIDRequestMessage" type="tns:GetOrganizationByHCIDRequestMessageType" />
@@ -201,6 +203,7 @@
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="hcid" type="xsd:string"/>
             <xsd:element name="serviceName" type="xsd:string"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="GetOrganizationByHCIDServiceNameRequestMessage" type="tns:GetOrganizationByHCIDServiceNameRequestMessageType" />
@@ -210,6 +213,7 @@
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="hcidList" type="xsd:string" maxOccurs="unbounded"/>
             <xsd:element name="serviceName" type="xsd:string"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByHCIDServiceNameRequestMessage" type="tns:ListOrganizationsByHCIDServiceNameRequestMessageType" />
@@ -236,6 +240,7 @@
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="serviceName" type="xsd:string"/>
+            <xsd:element name="exchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListOrganizationsByServiceNameRequestMessage" type="tns:ListOrganizationsByServiceNameRequestMessageType" />

@@ -48,6 +48,7 @@
     <xsd:complexType name="ListEndpointsResponseMessageType">
         <xsd:sequence>
             <xsd:element name="endpointsList" type="org:endpointType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListEndpointsResponseMessage" type="tns:ListEndpointsResponseMessageType"/>
@@ -123,6 +124,7 @@
     <xsd:complexType name="ListEndpointUrlInfoByNhinTargetCommunitiesResponseMessageType" >
         <xsd:sequence>
             <xsd:element name="urlInfoList" type="nccommon:UrlInfoType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListEndpointUrlInfoByNhinTargetCommunitiesResponseMessage" type="tns:ListEndpointUrlInfoByNhinTargetCommunitiesResponseMessageType" />

@@ -135,11 +135,6 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="DeletePropertyFileResponse" type="tns:DeletePropertyFileResponseType" />
-    <xsd:complexType name="PropValue" >
-        <xsd:sequence>
-            
-        </xsd:sequence>
-    </xsd:complexType>
     <xsd:complexType name="AddPropertyRequestType" >
         <xsd:sequence>
             <xsd:element name="file" type="xsd:string" />

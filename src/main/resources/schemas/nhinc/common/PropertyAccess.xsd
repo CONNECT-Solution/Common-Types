@@ -3,8 +3,10 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             targetNamespace="urn:gov:hhs:fha:nhinc:common:propertyaccess"
             xmlns:tns="urn:gov:hhs:fha:nhinc:common:propertyaccess"
+            xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon"
             elementFormDefault="qualified">
-                
+    <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="../common/NhincCommon.xsd" />
+               
     <xsd:complexType name="GetPropertyRequestType" >
         <xsd:sequence>
             <xsd:element name="propertyFile" type="xsd:string" />
@@ -147,6 +149,7 @@
 
     <xsd:complexType name="ListPropertiesRequestType" >
         <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="file" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
@@ -154,6 +157,7 @@
 
     <xsd:complexType name="SimplePropertyResponseType">
         <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
             <xsd:element name="message" type="xsd:string" minOccurs="0"/>
             <xsd:element name="propertyList" type="tns:PropertyType" minOccurs="0" maxOccurs="unbounded" />

@@ -6,7 +6,7 @@
             xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon"
             elementFormDefault="qualified">
  
-    <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="../common/NhincCommon.xsd" />
+    <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="NhincCommon.xsd" />
     <xsd:complexType name="GetPropertyRequestType" >
         <xsd:sequence>
             <xsd:element name="propertyFile" type="xsd:string" />

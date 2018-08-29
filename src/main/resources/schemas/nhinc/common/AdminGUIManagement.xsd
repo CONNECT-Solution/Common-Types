@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="urn:gov:hhs:fha:nhinc:common:adminguimanagement"
+            xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon"
+            targetNamespace="urn:gov:hhs:fha:nhinc:common:adminguimanagement" elementFormDefault="qualified">
+    <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:nhinccommon" schemaLocation="../common/NhincCommon.xsd" />
+
+    <xsd:complexType name="AdminGUIRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="includeEventMessages" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdminGUIRequestMessage" type="tns:AdminGUIRequestMessageType" />
+    
+    <xsd:complexType name="EventLogMessageType">
+        <xsd:sequence>
+            <xsd:element name="event" type="xsd:string"/>
+            <xsd:element name="inbound" type="xsd:long"/>
+            <xsd:element name="outbound" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EventLogMessage" type="tns:EventLogMessageType"/>
+        
+     <xsd:complexType name="DashboardStatusMessageType">
+        <xsd:sequence>
+            <xsd:element name="OS" type="xsd:string"/>
+            <xsd:element name="version" type="xsd:string"/>
+            <xsd:element name="server" type="xsd:string"/>
+            <xsd:element name="memory" type="xsd:string"/>
+            <xsd:element name="event" type="tns:EventLogMessageType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DashboardStatusMessage" type="tns:DashboardStatusMessageType"/>
+</xsd:schema>

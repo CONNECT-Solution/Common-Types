@@ -73,7 +73,7 @@
     <xsd:complexType name="ViewErrorLogRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-            <xsd:element name="id" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="id" type="xsd:long"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ViewErrorLogRequestMessage" type="tns:ViewErrorLogRequestMessageType" />

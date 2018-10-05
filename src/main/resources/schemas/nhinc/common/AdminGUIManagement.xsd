@@ -45,6 +45,7 @@
             <xsd:element name="respondingHcids" type="xsd:string" minOccurs="0"/>
             <xsd:element name="eventTime" type="xsd:date" minOccurs="0"/>
             <xsd:element name="exceptionType" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="version" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
 

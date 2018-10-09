@@ -9,7 +9,7 @@
         <xsd:sequence>
             <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
             <xsd:element name="message" type="xsd:string" minOccurs="0" />
-             <xsd:element name="endpointsList" type="tns:EndpointPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="endpointsList" type="tns:EndpointPropertyType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="SimpleInternalExchangeManagementResponseMessage" type="tns:SimpleInternalExchangeManagementResponseMessageType"/>
@@ -17,9 +17,7 @@
     <xsd:complexType name="UpdateEndpointRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-			<xsd:element name="name" type="xsd:string" />
-			<xsd:element name="version" type="xsd:string" />
-			<xsd:element name="url" type="xsd:string" />
+            <xsd:element name="endpoint" type="tns:EndpointPropertyType" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="UpdateEndpointRequestMessage" type="tns:UpdateEndpointRequestMessageType" />

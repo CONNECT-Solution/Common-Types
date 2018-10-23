@@ -43,7 +43,7 @@
             <xsd:element name="serviceType" type="xsd:string" minOccurs="0"/>
             <xsd:element name="initiatingHcid" type="xsd:string" minOccurs="0"/>
             <xsd:element name="respondingHcids" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="eventTime" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="eventTime" type="xsd:dateTime" minOccurs="0"/>
             <xsd:element name="exceptionType" type="xsd:string" minOccurs="0"/>
             <xsd:element name="version" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>

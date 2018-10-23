@@ -43,7 +43,7 @@
             <xsd:element name="serviceType" type="xsd:string" minOccurs="0"/>
             <xsd:element name="initiatingHcid" type="xsd:string" minOccurs="0"/>
             <xsd:element name="respondingHcids" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="eventTime" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="eventTime" type="xsd:string" minOccurs="0"/>
             <xsd:element name="exceptionType" type="xsd:string" minOccurs="0"/>
             <xsd:element name="version" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
@@ -65,8 +65,8 @@
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="service" type="xsd:string" minOccurs="0"/>
             <xsd:element name="exception" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="fromDate" type="xsd:date" minOccurs="0"/>
-            <xsd:element name="toDate" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="fromDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="toDate" type="xsd:dateTime" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ListErrorLogRequestMessage" type="tns:ListErrorLogRequestMessageType" />

@@ -5,8 +5,6 @@
             xmlns:iheaudit="http://nhinc.services.com/schema/auditmessage" xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2"
             xmlns:x12="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd"
             xmlns:nccommon="urn:gov:hhs:fha:nhinc:common:nhinccommon"
-            xmlns:subb2obcdc="urn:gov:hhs:fha:nhinc:common:subscriptionb2overrideforcdc"
-            xmlns:subb2obdoc="urn:gov:hhs:fha:nhinc:common:subscriptionb2overridefordocuments"
             xmlns:xacml="urn:oasis:names:tc:xacml:2.0:context:schema:os"
             xmlns:edxlde="urn:oasis:names:tc:emergency:EDXL:DE:1.0"
             xmlns:xcpd="urn:ihe:iti:xcpd:2009"
@@ -16,9 +14,6 @@
     <xsd:import namespace="urn:ihe:iti:xds-b:2007" schemaLocation="../../ihe/XDS.b_DocumentRepository.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:ebxml-regrep:xsd:rs:3.0" schemaLocation="../../ebRS/rs.xsd"/>
     <xsd:import namespace="http://nhinc.services.com/schema/auditmessage" schemaLocation="../../ihe/auditmessage.xsd"/>
-    <xsd:import namespace="http://docs.oasis-open.org/wsn/b-2" schemaLocation="../../docs.oasis-open.org/wsn/b-2.xsd"/>
-    <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:subscriptionb2overrideforcdc" schemaLocation="../common/SubscriptionB2OverrideForCdc.xsd"/>
-    <xsd:import namespace="urn:gov:hhs:fha:nhinc:common:subscriptionb2overridefordocuments" schemaLocation="../common/SubscriptionB2OverrideForDocuments.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:xacml:2.0:context:schema:os" schemaLocation="../../oasis/xacml/access_control-xacml-2.0-context-schema-os.xsd"/>
     <xsd:import namespace="urn:oasis:names:tc:emergency:EDXL:DE:1.0" schemaLocation="../../../schemas/ebRS/edxl-de.xsd"/>
     <xsd:import namespace="http://www.caqh.org/SOAP/WSDL/CORERule2.2.0.xsd" schemaLocation="../../../schemas/caqh/CORERule2.2.0.xsd"/>
@@ -125,6 +120,7 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayRegisterDocumentSetRequest" type="tns:RespondingGateway_CrossGatewayRegisterDocumentSetRequestType"/>
+
     <!-- ====================================================================
     Audit Log Schemas.
     FindAuditEventsRequestType and FindCommunitiesAndAuditEventsType are
@@ -152,91 +148,6 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="FindCommunitiesAndAuditEventsRequest" type="tns:FindCommunitiesAndAuditEventsRequestType"/>
-    <!-- ====================================================================
-    Subscription Management Schemas.
-    ==================================================================== -->
-    <xsd:complexType name="SubscribeRequestType">
-        <xsd:sequence>
-            <xsd:element ref="wsnt:Subscribe"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SubscribeRequest" type="tns:SubscribeRequestType"/>
-    <xsd:complexType name="SubscribeResponseType">
-        <xsd:sequence>
-            <xsd:element ref="wsnt:SubscribeResponse"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SubscribeResponse" type="tns:SubscribeResponseType"/>
-    <xsd:complexType name="SubscribeDocumentRequestType">
-        <xsd:sequence>
-            <xsd:element name="subscribe" type="subb2obdoc:SubscribeDocumentType"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SubscribeDocumentRequest" type="tns:SubscribeDocumentRequestType"/>
-    <xsd:complexType name="SubscribeDocumentRequestSecuredType">
-        <xsd:sequence>
-            <xsd:element name="subscribe" type="subb2obdoc:SubscribeDocumentType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SubscribeDocumentRequestSecured" type="tns:SubscribeDocumentRequestSecuredType"/>
-    <xsd:complexType name="SubscribeCdcBioPackageRequestType">
-        <xsd:sequence>
-            <xsd:element name="subscribe" type="subb2obcdc:SubscribeCdcBioPackageType"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SubscribeCdcBioPackageRequest" type="tns:SubscribeCdcBioPackageRequestType"/>
-    <xsd:complexType name="SubscribeDocumentResponseType">
-        <xsd:sequence>
-            <xsd:element ref="wsnt:SubscribeResponse"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SubscribeDocumentResponse" type="tns:SubscribeDocumentResponseType"/>
-    <xsd:complexType name="SubscribeCdcBioPackageResponseType">
-        <xsd:sequence>
-            <xsd:element ref="wsnt:SubscribeResponse"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="SubscribeCdcBioPackageResponse" type="tns:SubscribeCdcBioPackageResponseType"/>
-    <xsd:complexType name="UnsubscribeRequestType">
-        <xsd:sequence>
-            <xsd:element ref="wsnt:Unsubscribe"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="UnsubscribeRequest" type="tns:UnsubscribeRequestType"/>
-    <!-- ====================================================================
-    Notification Schemas.
-    ==================================================================== -->
-    <xsd:complexType name="NotifyRequestType">
-        <xsd:sequence>
-            <xsd:element ref="wsnt:Notify"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="NotifyRequest" type="tns:NotifyRequestType"/>
-    <xsd:complexType name="NotifySubscribersOfDocumentRequestType">
-        <xsd:sequence>
-            <xsd:element name="notify" type="subb2obdoc:NotifyDocumentType"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="NotifySubscribersOfDocumentRequest" type="tns:NotifySubscribersOfDocumentRequestType"/>
-    <xsd:complexType name="NotifySubscribersOfDocumentRequestSecuredType">
-        <xsd:sequence>
-            <xsd:element name="notify" type="subb2obdoc:NotifyDocumentType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="NotifySubscribersOfDocumentRequestSecured" type="tns:NotifySubscribersOfDocumentRequestSecuredType"/>
-    <xsd:complexType name="NotifySubscribersOfCdcBioPackageRequestType">
-        <xsd:sequence>
-            <xsd:element name="notify" type="subb2obcdc:NotifyCdcBioPackageType"/>
-            <xsd:element name="assertion" type="nccommon:AssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="NotifySubscribersOfCdcBioPackageRequest" type="tns:NotifySubscribersOfCdcBioPackageRequestType"/>
     <!-- ====================================================================
     Policy Engine
     ==================================================================== -->
@@ -391,108 +302,6 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="CheckPolicyAuditLogQueryOutResponse" type="tns:CheckPolicyAuditLogQueryOutResponseType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscRqstInRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscRqstInRequest" type="tns:CheckPolicyHIEMSubscRqstInRequestType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscRqstInResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscRqstInResponse" type="tns:CheckPolicyHIEMSubscRqstInResponseType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscRqstOutRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscRqstOutRequest" type="tns:CheckPolicyHIEMSubscRqstOutRequestType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscRqstOutResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscRqstOutResponse" type="tns:CheckPolicyHIEMSubscRqstOutResponseType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscCnclInRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscCnclInRequest" type="tns:CheckPolicyHIEMSubscCnclInRequestType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscCnclInResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscCnclInResponse" type="tns:CheckPolicyHIEMSubscCnclInResponseType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscCnclOutRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscCnclOutRequest" type="tns:CheckPolicyHIEMSubscCnclOutRequestType"/>
-    <xsd:complexType name="CheckPolicyHIEMSubscCnclOutResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMSubscCnclOutResponse" type="tns:CheckPolicyHIEMSubscCnclOutResponseType"/>
-    <xsd:complexType name="CheckPolicyHIEMNotifyInRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMNotifyInRequest" type="tns:CheckPolicyHIEMNotifyInRequestType"/>
-    <xsd:complexType name="CheckPolicyHIEMNotifyInResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMNotifyInResponse" type="tns:CheckPolicyHIEMNotifyInResponseType"/>
-    <xsd:complexType name="CheckPolicyHIEMNotifyOutRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMNotifyOutRequest" type="tns:CheckPolicyHIEMNotifyOutRequestType"/>
-    <xsd:complexType name="CheckPolicyHIEMNotifyOutResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyHIEMNotifyOutResponse" type="tns:CheckPolicyHIEMNotifyOutResponseType"/>
-    <xsd:complexType name="CheckPolicySubjDiscReIdentInRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicySubjDiscReIdentInRequest" type="tns:CheckPolicySubjDiscReIdentInRequestType"/>
-    <xsd:complexType name="CheckPolicySubjDiscReIdentInResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicySubjDiscReIdentInResponse" type="tns:CheckPolicySubjDiscReIdentInResponseType"/>
-    <xsd:complexType name="CheckPolicySubjDiscReIdentOutRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicySubjDiscReIdentOutRequest" type="tns:CheckPolicySubjDiscReIdentOutRequestType"/>
-    <xsd:complexType name="CheckPolicySubjDiscReIdentOutResponseType">
-        <xsd:sequence>
-            <xsd:element name="response" type="xacml:ResponseType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicySubjDiscReIdentOutResponse" type="tns:CheckPolicySubjDiscReIdentOutResponseType"/>
-    <xsd:complexType name="CheckPolicyBasedPatientIdExistenceRequestType">
-        <xsd:sequence>
-            <xsd:element name="request" type="xacml:RequestType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="CheckPolicyBasedPatientIdExistenceRequest" type="tns:CheckPolicyBasedPatientIdExistenceRequestType"/>
     <xsd:complexType name="CheckPolicyBasedPatientIdExistenceResponseType">
         <xsd:sequence>
             <xsd:element name="response" type="xacml:ResponseType"/>

@@ -89,8 +89,7 @@
                         <include>uddi/uddi_v3subscriptionListener.xsd</include>
                         <include>uddi/uddi_v3subscription.xsd</include>
                         <include>www.w3.org/**/*.xsd</include>
-                        <include>xmlsoap.org/**/*.xsd</include>
-                        <include>Endpoint/**/*.xsd</include>
+                        <include>xmlsoap.org/**/*.xsd</include>                        
                         <include>directConfig/**/*.xsd</include>
                         <include>caqh/**/*.xsd</include>
                         <include>exchange/*.xsd</include>

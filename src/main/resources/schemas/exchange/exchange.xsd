@@ -27,7 +27,7 @@
   <xsd:complexType name="exchangeType">
     <xsd:sequence>
       <xsd:element name="name" type="xsd:string" minOccurs="0"/>
-      <xsd:element name="gatewayAlias" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="certificateAlias" type="xsd:string" minOccurs="0"/>
       <xsd:element name="url" type="xsd:anyURI" minOccurs="0"/>
       <xsd:element name="key" type="xsd:string" minOccurs="0"/>
       <xsd:element name="tLSVersions" type="tns:tLSVersionType" minOccurs="0"/>

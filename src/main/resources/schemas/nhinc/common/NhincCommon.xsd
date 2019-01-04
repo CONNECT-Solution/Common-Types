@@ -59,6 +59,8 @@
             <xsd:element name="transactionTimeout" type="xsd:int" minOccurs="0" default="-1" />
             <xsd:element name="keepAlive" type="xsd:string" minOccurs="0" />
             <xsd:element name="CONNECTCustomHttpHeaders" type="tns:CONNECTCustomHttpHeadersType" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="signatureAlgorithm" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="digestAlgorithm" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="SamlConditions" type="tns:SamlConditionsType"/>

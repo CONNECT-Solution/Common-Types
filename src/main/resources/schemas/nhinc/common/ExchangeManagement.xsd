@@ -25,6 +25,7 @@
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
             <xsd:element name="exchange" type="exch:exchangeType"/>
+            <xsd:element name="originalExchangeName" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="SaveExchangeRequestMessage" type="tns:SaveExchangeRequestMessageType" />

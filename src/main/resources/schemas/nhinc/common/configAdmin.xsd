@@ -26,6 +26,8 @@
         <xsd:sequence>
             <xsd:element name="status" type="xsd:boolean"/>
             <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="aliasList" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="csrData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="SimpleCertificateResponseMessage" type="tns:SimpleCertificateResponseMessageType"/>
@@ -110,4 +112,30 @@
     </xsd:complexType>
     <xsd:element name="ListCertificatesResponseMessage" type="tns:ListCertificatesResponseMessageType"/>
 
+    <xsd:complexType name="CreateCertificateRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="alias" type="xsd:string"/>
+            <xsd:element name="referenceNumber" type="xsd:string"/>
+            <xsd:element name="organizationalUnit" type="xsd:string"/>
+            <xsd:element name="organization" type="xsd:string"/>
+            <xsd:element name="countryName" type="xsd:string"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateCertificateRequestMessage" type="tns:CreateCertificateRequestMessageType" />
+
+    <xsd:complexType name="DeleteGatewayNewRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DeleteGatewayNewRequestMessage" type="tns:DeleteGatewayNewRequestMessageType" />
+
+    <xsd:complexType name="CreateCSRRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="alias" type="xsd:string"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CreateCSRRequestMessage" type="tns:CreateCSRRequestMessageType" />
 </xsd:schema>

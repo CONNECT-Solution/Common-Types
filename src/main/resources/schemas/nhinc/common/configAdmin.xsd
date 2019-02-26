@@ -124,12 +124,12 @@
     </xsd:complexType>
     <xsd:element name="CreateCertificateRequestMessage" type="tns:CreateCertificateRequestMessageType" />
 
-    <xsd:complexType name="DeleteGatewayNewRequestMessageType" >
+    <xsd:complexType name="DeleteTemporaryKeystoreRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="DeleteGatewayNewRequestMessage" type="tns:DeleteGatewayNewRequestMessageType" />
+    <xsd:element name="DeleteTemporaryKeystoreRequestMessage" type="tns:DeleteTemporaryKeystoreRequestMessageType" />
 
     <xsd:complexType name="CreateCSRRequestMessageType" >
         <xsd:sequence>

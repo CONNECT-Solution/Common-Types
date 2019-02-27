@@ -120,6 +120,15 @@
             <xsd:element name="organization" type="xsd:string"/>
             <xsd:element name="countryName" type="xsd:string"/>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+            <xsd:element name="dnQualifier" type="xsd:string" minOccurs="0" />
+            <xsd:element name="stateOrProvinceName" type="xsd:string" minOccurs="0" />
+            <xsd:element name="locality" type="xsd:string" minOccurs="0" />
+            <xsd:element name="title" type="xsd:string" minOccurs="0" />
+            <xsd:element name="surName" type="xsd:string" minOccurs="0" />
+            <xsd:element name="givenName" type="xsd:string" minOccurs="0" />
+            <xsd:element name="initials" type="xsd:string" minOccurs="0" />
+            <xsd:element name="pseudonym" type="xsd:string" minOccurs="0" />
+            <xsd:element name="generationQualifier" type="xsd:string" minOccurs="0" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="CreateCertificateRequestMessage" type="tns:CreateCertificateRequestMessageType" />

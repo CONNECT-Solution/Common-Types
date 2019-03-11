@@ -147,4 +147,25 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="CreateCSRRequestMessage" type="tns:CreateCSRRequestMessageType" />
+
+    <xsd:complexType name="ImportToKeystoreRequestMessageType">
+        <xsd:sequence>
+            <xsd:element name="alias" type="xsd:string"/>
+            <xsd:element name="serverData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="rootData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
+            <xsd:element name="intermediateData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ImportToKeystoreRequestMessage" type="tns:ImportToKeystoreRequestMessageType" />
+
+    <xsd:complexType name="ImportToTruststoreRequestMessageType">
+        <xsd:sequence>
+            <xsd:element name="alias" type="xsd:string"/>
+            <xsd:element name="rootData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="intermediateData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ImportToTruststoreRequestMessage" type="tns:ImportToTruststoreRequestMessageType" />
 </xsd:schema>

@@ -151,9 +151,9 @@
     <xsd:complexType name="ImportToKeystoreRequestMessageType">
         <xsd:sequence>
             <xsd:element name="alias" type="xsd:string"/>
-            <xsd:element name="serverData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
-            <xsd:element name="rootData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
-            <xsd:element name="intermediateData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
+            <xsd:element name="serverCert" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="rootCert" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
+            <xsd:element name="intermediateList" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -162,8 +162,8 @@
     <xsd:complexType name="ImportToTruststoreRequestMessageType">
         <xsd:sequence>
             <xsd:element name="alias" type="xsd:string"/>
-            <xsd:element name="rootData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
-            <xsd:element name="intermediateData" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="rootCert" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="intermediateList" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" maxOccurs="unbounded"/>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>

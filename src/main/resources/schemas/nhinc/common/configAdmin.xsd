@@ -115,7 +115,7 @@
     <xsd:complexType name="CreateCertificateRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="alias" type="xsd:string"/>
-            <xsd:element name="referenceNumber" type="xsd:string"/>
+            <xsd:element name="commonName" type="xsd:string"/>
             <xsd:element name="organizationalUnit" type="xsd:string"/>
             <xsd:element name="organization" type="xsd:string"/>
             <xsd:element name="countryName" type="xsd:string"/>

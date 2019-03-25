@@ -168,4 +168,11 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="ImportToTruststoreRequestMessage" type="tns:ImportToTruststoreRequestMessageType" />
+
+    <xsd:complexType name="CompleteImportWizardRequestMessageType" >
+        <xsd:sequence>
+            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CompleteImportWizardRequestMessage" type="tns:CompleteImportWizardRequestMessageType" />
 </xsd:schema>

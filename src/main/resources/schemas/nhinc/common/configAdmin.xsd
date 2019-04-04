@@ -21,7 +21,6 @@
     </xsd:complexType>
     <xsd:element name="ImportCertificateRequest" type="tns:ImportCertificateRequestType" />
 
-
     <xsd:complexType name="SimpleCertificateResponseMessageType">
         <xsd:sequence>
             <xsd:element name="status" type="xsd:boolean"/>
@@ -133,13 +132,6 @@
     </xsd:complexType>
     <xsd:element name="CreateCertificateRequestMessage" type="tns:CreateCertificateRequestMessageType" />
 
-    <xsd:complexType name="DeleteTemporaryKeystoreRequestMessageType" >
-        <xsd:sequence>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="DeleteTemporaryKeystoreRequestMessage" type="tns:DeleteTemporaryKeystoreRequestMessageType" />
-
     <xsd:complexType name="CreateCSRRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="alias" type="xsd:string"/>
@@ -148,31 +140,21 @@
     </xsd:complexType>
     <xsd:element name="CreateCSRRequestMessage" type="tns:CreateCSRRequestMessageType" />
 
-    <xsd:complexType name="ImportToKeystoreRequestMessageType">
+    <xsd:complexType name="ImportCertificateChainRequestMessageType">
         <xsd:sequence>
-            <xsd:element name="alias" type="xsd:string"/>
-            <xsd:element name="serverCert" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            <xsd:element name="alias" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="serverCert" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
             <xsd:element name="rootCert" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
             <xsd:element name="intermediateList" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="ImportToKeystoreRequestMessage" type="tns:ImportToKeystoreRequestMessageType" />
+    <xsd:element name="ImportCertificateChainRequestMessage" type="tns:ImportCertificateChainRequestMessageType" />
 
-    <xsd:complexType name="ImportToTruststoreRequestMessageType">
-        <xsd:sequence>
-            <xsd:element name="alias" type="xsd:string"/>
-            <xsd:element name="rootCert" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
-            <xsd:element name="intermediateList" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" maxOccurs="unbounded"/>
-            <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="ImportToTruststoreRequestMessage" type="tns:ImportToTruststoreRequestMessageType" />
-
-    <xsd:complexType name="CompleteImportWizardRequestMessageType" >
+    <xsd:complexType name="SimpleCertificateRequestMessageType" >
         <xsd:sequence>
             <xsd:element name="configAssertion" type="nccommon:ConfigAssertionType"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="CompleteImportWizardRequestMessage" type="tns:CompleteImportWizardRequestMessageType" />
+    <xsd:element name="SimpleCertificateRequestMessage" type="tns:SimpleCertificateRequestMessageType" />
 </xsd:schema>

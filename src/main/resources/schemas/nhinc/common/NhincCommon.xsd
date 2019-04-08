@@ -61,16 +61,17 @@
             <xsd:element name="CONNECTCustomHttpHeaders" type="tns:CONNECTCustomHttpHeadersType" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="signatureAlgorithm" type="xsd:string" minOccurs="0"/>
             <xsd:element name="digestAlgorithm" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="deferredResponseEndpoint" type="xsd:anyURI" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="SamlConditions" type="tns:SamlConditionsType"/>
+    <xsd:element name="Assertion" type="tns:AssertionType"/>
     <xsd:complexType name="SamlConditionsType">
         <xsd:sequence>
             <xsd:element name="notBefore" type="xsd:string"/>
             <xsd:element name="notOnOrAfter" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:element name="Assertion" type="tns:AssertionType"/>
+    <xsd:element name="SamlConditions" type="tns:SamlConditionsType"/>
     <xsd:complexType name="SamlAuthnStatementType">
         <xsd:sequence>
             <xsd:element name="authInstant" type="xsd:string" />

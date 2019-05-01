@@ -98,4 +98,5 @@
         </xs:sequence>
     </xs:complexType>
     <xs:element name="RegisterDocumentSetRequest" type="RegisterDocumentSetRequestType"/>
+    <xs:element name="DeferredResponseEndpoint" type="xs:anyURI"/>
 </xs:schema>

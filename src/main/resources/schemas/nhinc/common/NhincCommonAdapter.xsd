@@ -66,13 +66,13 @@
 	<xsd:complexType name="AdapterDeferredResponseOptionQueryType">
         <xsd:sequence>
             <xsd:element name="assertion" type="nccommon:AssertionType"/>
-            <xsd:element name="newId" type="xsd:string" />
+            <xsd:element name="gatewayAdhocQueryRequestId" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterDeferredResponseOptionQuery" type="tns:AdapterDeferredResponseOptionQueryType"/>
 	<xsd:complexType name="AdapterDeferredResponseOptionQuerySecuredType">
         <xsd:sequence>
-            <xsd:element name="newId" type="xsd:string" />
+            <xsd:element name="gatewayAdhocQueryRequestId" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="AdapterDeferredResponseOptionQuerySecured" type="tns:AdapterDeferredResponseOptionQuerySecuredType"/>

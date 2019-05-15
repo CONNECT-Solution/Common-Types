@@ -35,6 +35,14 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:element name="RespondingGateway_CrossGatewayQueryResponse" type="tns:RespondingGateway_CrossGatewayQueryResponseType"/>
+    <xsd:complexType name="AdapterDeferredResultsResponseType">
+        <xsd:sequence>
+            <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="deferredResultEndpoint" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AdapterDeferredResultsResponse" type="tns:AdapterDeferredResultsResponseType"/>
     <xsd:complexType name="RespondingGateway_CrossGatewayQuerySecureRequestType">
         <xsd:sequence>
             <xsd:element ref="query:AdhocQueryRequest"/>

@@ -952,6 +952,9 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="maritalStatusCode" type="CE" minOccurs="0"/>
 			<xs:element name="religiousAffiliationCode" type="CE" minOccurs="0"/>
 			<xs:element name="raceCode" type="CE" minOccurs="0"/>
+            <!-- Begin Extension: (SDTC) -->
+            <xs:element ref="sdtc:raceCode" minOccurs="0" maxOccurs="unbounded"/>
+            <!-- End Extension: (SDTC) -->
 			<xs:element name="ethnicGroupCode" type="CE" minOccurs="0"/>
 			<xs:element name="guardian" type="POCD_MT000040.Guardian" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="birthplace" type="POCD_MT000040.Birthplace" minOccurs="0"/>

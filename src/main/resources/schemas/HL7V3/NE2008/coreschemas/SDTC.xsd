@@ -21,8 +21,13 @@
   •	code/@valueSet
   •	code/@valueSetVersion
 -->
-<xs:schema targetNamespace="urn:hl7-org:sdtc" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:sdtc" elementFormDefault="qualified"
-  xmlns:hl7="urn:hl7-org:v3">
+<xs:schema targetNamespace="urn:hl7-org:sdtc" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns="urn:hl7-org:sdtc" elementFormDefault="qualified"
+           xmlns:hl7="urn:hl7-org:v3" 
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           jaxb:version="1.0" jaxb:extensionBindingPrefixes="xjc">
   <xs:annotation>
     <xs:documentation>SDTC Schema Extensions, July 2012</xs:documentation>
     
@@ -32,7 +37,20 @@
   <xs:attribute name="valueSet" type="hl7:oid"/>
   <xs:attribute name="valueSetVersion" type="hl7:st"/>
    
-<!--  <xs:element name="raceCode" type="hl7:CE"/> -->
+  <!-- 
+       When enabling the stdc raceCode, we need to account for a name collision 
+       with the existing (and still required) org.hl7.v3.raceCode as found in
+       POCD_MT000040.Patient. So, we add the reference in the POCD_MT000040.xsd
+       file but include an annotation directive here to change the java property
+       name to sdtcRaceCode.
+  -->
+  <xs:element name="raceCode" type="hl7:CE">     
+      <xs:annotation>          
+          <xs:appinfo>
+              <jaxb:property name="sdtcRaceCode"/>
+          </xs:appinfo>              
+      </xs:annotation>
+  </xs:element> 
   
   <xs:element name="dischargeDispositionCode" type="hl7:CE"/>
   

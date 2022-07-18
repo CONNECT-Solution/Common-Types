@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="urn:gov:hhs:fha:nhinc:exchange:directory"
+           targetNamespace="urn:gov:hhs:fha:nhinc:exchange:directory"
+           elementFormDefault="qualified">
+
+  <xsd:complexType name="organizationType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="hcid" type="xsd:string"/>
+      <xsd:element name="type" type="xsd:string" minOccurs="0"/>
+      <!-- Organization status for example, active -->
+      <xsd:element name="status" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="contact" type="tns:contactType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="address" type="tns:addressType" minOccurs="0" maxOccurs="unbounded"/>
+        <!-- partOf holds the HCID of the organization of which this organization forms a part.
+        If this is a Carequality Connection, then the partOf object points to the Carequality Implementer.
+        If this is a eHealth Exchange Sub-Participant, then the partOf object points to the eHealth Exchange Participant
+        If this is a lower-level organization, then the partOf object points to the immediate parent organization
+        If this is a top-level organization, then the partOf object is not specified   -->
+      <xsd:element name="partOf" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="endpointList" type="tns:endpointListType" minOccurs="0"/>
+      <xsd:element name="targetRegion" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="contactType">
+    <xsd:sequence>
+      <!--contact use type, for example: techincal, financial -->
+      <xsd:element name="role" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="givenName" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="familyName" type="xsd:string" minOccurs="0"/>
+      <!-- Map to UDDI schema's personName element-->
+      <xsd:element name="fullName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="phone" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="address" type="tns:addressType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="addressType">
+    <xsd:sequence>
+      <!-- Address use type for example, work -->
+      <xsd:element name="use"  type="xsd:string" minOccurs="0"/>
+      <xsd:element name="addressLine1"  type="xsd:string" minOccurs="0"/>
+      <xsd:element name="addressLine2"  type="xsd:string" minOccurs="0"/>
+      <xsd:element name="city"  type="xsd:string" minOccurs="0"/>
+      <xsd:element name="state"  type="xsd:string" minOccurs="0"/>
+      <xsd:element name="country"  type="xsd:string" minOccurs="0"/>
+      <xsd:element name="zipcode"  type="xsd:string" minOccurs="0"/>
+      <!-- Map to UDDI schema's addressLine element-->
+      <xsd:element name="addressLine" type="xsd:string" minOccurs ="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="endpointListType">
+    <xsd:sequence>
+      <xsd:element name="endpoint" type="tns:endpointType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="endpointType">
+    <xsd:sequence>
+      <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+      <!-- Nwhin service name for example, QueryForDoucments -->
+      <xsd:element name="name" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <!--Maps to the connectionType in FHIR repsonse and holds the Protocol/Profile/Standard to be used with this endpoint connection -->
+      <xsd:element name="profile" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="endpointConfigurationList" type="tns:endpointConfigurationListType"/>
+      <xsd:element name="payloadType" type="xsd:string" minOccurs="0"  maxOccurs="unbounded"/>
+      <xsd:element name="payloadFormat" type="xsd:string" minOccurs="0"  maxOccurs="unbounded"/>
+      <!--PurposesOfUse Value Set for SAML header and/or access control-->
+      <xsd:element name="purposeOfUseList" type="tns:purposeOfUseListType" minOccurs="0"/>
+      <!-- Roles Value Set for SAML header and/or access control-->
+      <xsd:element name="rolesList" type="tns:rolesListType" minOccurs="0" />
+      <!--Initiative specific list of use cases supported -->
+      <xsd:element name="usecaseList" type="tns:usecaseListType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="purposeOfUseListType">
+    <xsd:sequence>
+      <xsd:element name="purposeOfUse" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="rolesListType">
+    <xsd:sequence>
+      <xsd:element name="role" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="usecaseListType">
+    <xsd:sequence>
+      <xsd:element name="usecase" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="endpointConfigurationListType">
+      <xsd:sequence>
+          <xsd:element name="endpointConfiguration" type="tns:endpointConfigurationType" maxOccurs="unbounded"/>
+      </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="endpointConfigurationType">
+      <xsd:sequence>
+          <!--service endpoint -->
+          <xsd:element name="url" type="xsd:anyURI"  minOccurs="0"/>
+          <!--multispec version -->
+          <xsd:element name="version" type="xsd:string"  minOccurs="0"/>
+      </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

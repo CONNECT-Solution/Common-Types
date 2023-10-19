@@ -55,11 +55,15 @@
   <xs:element name="dischargeDispositionCode" type="hl7:CE"/>
   
   <xs:element name="id" type="hl7:II"/>
+
+  <xs:element name="birthTime" type="hl7:TS"/>
   
   <xs:element name="deceasedInd" type="hl7:BL"/>
   <xs:element name="deceasedTime" type="hl7:TS"/>
+
+  <xs:element name="multipleBirthInd" type="hl7:BL"/>
+  <xs:element name="multipleBirthOrderNumber" type="hl7:INT"/>
   
-  <xs:element name="birthTime" type="hl7:TS"/>
-  
+    
 
 </xs:schema>

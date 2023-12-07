@@ -950,10 +950,10 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
 			<xs:element name="administrativeGenderCode" type="CE" minOccurs="0"/>
 			<xs:element name="birthTime" type="TS_explicit" minOccurs="0"/>
 			<!-- Begin Extension: (SDTC) for eICR 3.1 -->
-			<xs:element name="deceasedInd" type="BL" minOccurs="0"/>
-			<xs:element name="deceasedTime" type="TS" minOccurs="0"/>
-			<xs:element name="multipleBirthInd" type="BL" minOccurs="0"/>
-			<xs:element name="multipleBirthOrderNumber" type="INT" minOccurs="0"/>
+			<xs:element ref="sdtc:deceasedInd" type="BL" minOccurs="0"/>
+			<xs:element ref="sdtc:deceasedTime" type="TS" minOccurs="0"/>
+			<xs:element ref="sdtc:multipleBirthInd" type="BL" minOccurs="0"/>
+			<xs:element ref="sdtc:multipleBirthOrderNumber" type="INT" minOccurs="0"/>
 			<!-- End Extension: (SDTC) -->
 			<xs:element name="maritalStatusCode" type="CE" minOccurs="0"/>
 			<xs:element name="religiousAffiliationCode" type="CE" minOccurs="0"/>
